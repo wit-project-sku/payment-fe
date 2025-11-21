@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'NotoSans';
+  src: url('../../assets/font/NotoSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+.header {
+  width: 1820px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8ecde;
+  padding: 0 40px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  font-family: 'NotoSans';
+}
+
+.arrowLeft,
+.arrowRight {
+  font-size: 100px;
+  color: #000000;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.tabs {
+  display: flex;
+  gap: 120px;
+}
+
+.tab {
+  width: 400px;
+  color: #8e8e8e;
+  border: none;
+  cursor: pointer;
+  padding: 40px 0px;
+  background: transparent;
+  font-family: 'NotoSans';
+  font-size: 45px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.active {
+  color: #000;
+  background: #fffbf2;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  font-family: 'NotoSans';
+  font-weight: bold;
+}

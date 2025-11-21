@@ -1,0 +1,96 @@
+@font-face {
+  font-family: 'NotoSans';
+  src: url('../../assets/font/NotoSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+.wrapper {
+  font-family: 'NotoSans';
+  width: 1780px;
+  height: 620px;
+  background: #f8ecde;
+  padding: 50px 50px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: flex-start;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-sizing: border-box;
+}
+
+.itemsBox {
+  width: 1150px;
+  height: 520px;
+  background: white;
+  margin-right: 80px;
+  position: relative;
+  border-radius: 25px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.right {
+  width: 420px;
+  height: 510px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.summaryTitle {
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.red {
+  color: #ca4040;
+}
+
+.totalLabel {
+  font-size: 45px;
+  font-weight: bold;
+  color: #666;
+}
+
+.totalPrice {
+  font-size: 80px;
+  font-weight: bold;
+}
+
+.payButton {
+  width: 420px;
+  height: 160px;
+  border-radius: 10px;
+  background: #4e4e4e;
+  color: white;
+  font-size: 65px;
+  font-weight: bold;
+  margin-top: 30px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemsBox::-webkit-scrollbar {
+  width: 15px;
+}
+
+.itemsBox::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.itemsBox::-webkit-scrollbar-thumb {
+  background-color: #c2b59b;
+  border-radius: 10px;
+  border: 2px solid #e8e0d2;
+}
+
+.itemsBox::-webkit-scrollbar-thumb:hover {
+  background-color: #a8977a;
+}

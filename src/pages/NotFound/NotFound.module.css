@@ -1,0 +1,36 @@
+/* NotFound.module.css */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  text-align: center;
+  color: #333;
+}
+
+.code {
+  font-size: 80px;
+  font-weight: 700;
+  color: #ff6961;
+  margin-bottom: 12px;
+}
+
+.message {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.homeBtn {
+  padding: 12px 22px;
+  background-color: #333;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.homeBtn:hover {
+  background-color: #111;
+}
