@@ -1,0 +1,101 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 325px;
+  z-index: 9999;
+  font-family: 'NotoSans';
+}
+.paymentScreen {
+  width: 1300px;
+  height: 1600px;
+  background: #fffbf2;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: 'NotoSans';
+  box-sizing: border-box;
+}
+
+.paymentTitle {
+  font-size: 70px;
+  font-weight: 700;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #000000;
+}
+
+.paymentSubtitle {
+  font-size: 40px;
+  color: #b0b0b0;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.paymentAmount {
+  font-size: 80px;
+  font-weight: 700;
+  color: #c00000;
+  margin-bottom: 170px;
+}
+
+.paymentImage {
+  width: 500px;
+  height: 500px;
+  background-image: url('@assets/images/card.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 150px;
+}
+
+.paymentBar {
+  width: 700px;
+  height: 35px;
+  background: #e6e6e6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  margin-bottom: 80px;
+  overflow: hidden;
+}
+
+.paymentBarFill {
+  width: 0;
+  height: 27px;
+  background: #39b54a;
+  border-radius: 5px;
+  animation: fillBar 20s linear forwards;
+}
+
+.paymentCancel {
+  width: 500px;
+  height: 200px;
+  border-radius: 10px;
+  background: #555555;
+  color: white;
+  font-size: 80px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+@keyframes fillBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

@@ -1,8 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import MainLayout from '@layouts/MainLayout';
+import KioskLayout from '@layouts/KioskLayout';
+import AdminLayout from '@layouts/AdminLayout';
 
-const ShopPage = lazy(() => import('@pages/Shop/ShopPage'));
+const ShopPage = lazy(() => import('@pages/shop/ShopPage'));
+
+const ProductManagePage = lazy(() => import('@pages/admin/ProductManagePage'));
+const PaymentHistoryPage = lazy(() => import('@pages/admin/PaymentHistoryPage'));
+const IssueTrackerPage = lazy(() => import('@pages/Admin/IssueTrackerPage'));
+const LoginPage = lazy(() => import('@pages/Admin/LoginPage'));
+
 const NotFoundPage = lazy(() => import('@pages/NotFound/NotFound'));
 
 const PageLoader = () => (
@@ -21,8 +28,16 @@ const PageLoader = () => (
 );
 
 export default function AppRouter() {
-  const routes = [
+  const kioskRoutes = [
     { path: 'shop', element: <ShopPage /> },
+    { path: '*', element: <NotFoundPage /> },
+  ];
+
+  const adminRoutes = [
+    { path: 'products', element: <ProductManagePage /> },
+    { path: 'payments', element: <PaymentHistoryPage /> },
+    { path: 'issues', element: <IssueTrackerPage /> },
+    { path: 'login', element: <LoginPage /> },
     { path: '*', element: <NotFoundPage /> },
   ];
 
@@ -30,11 +45,18 @@ export default function AppRouter() {
     <Router>
       <Suspense fallback={<PageLoader />}>
         <Routes>
-          <Route path='/' element={<MainLayout />}>
-            {routes.map(({ path, element }) => (
+          <Route path='/kiosk/*' element={<KioskLayout />}>
+            {kioskRoutes.map(({ path, element }) => (
               <Route key={path} path={path} element={element} />
             ))}
           </Route>
+
+          <Route path='/admin/*' element={<AdminLayout />}>
+            {adminRoutes.map(({ path, element }) => (
+              <Route key={path} path={path} element={element} />
+            ))}
+          </Route>
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </Router>

@@ -6,14 +6,20 @@ export default function CartItem({ item, onRemove, onIncrease, onDecrease }) {
       <div className={styles.name}>{item.name}</div>
 
       <div className={styles.counter}>
-        <button onClick={onDecrease}>-</button>
-        <span>{item.quantity}</span>
-        <button onClick={onIncrease}>+</button>
+        <button className={styles.counterBtn} onClick={() => onDecrease(item.id)}>
+          -
+        </button>
+
+        <span className={styles.qty}>{item.quantity}</span>
+
+        <button className={styles.counterBtn} onClick={() => onIncrease(item.id)}>
+          +
+        </button>
       </div>
 
-      <div className={styles.price}>{item.price.toLocaleString()}</div>
+      <div className={styles.price}>{item.price.toLocaleString()}원</div>
 
-      <button className={styles.remove} onClick={onRemove}>
+      <button className={styles.remove} onClick={() => onRemove(item.id)}>
         X
       </button>
     </div>

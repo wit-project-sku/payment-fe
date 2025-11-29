@@ -5,7 +5,7 @@
   font-style: normal;
 }
 
-.header {
+.goodsHeader {
   width: 1820px;
   height: 140px;
   display: flex;
@@ -15,7 +15,6 @@
   padding: 0 40px;
   box-sizing: border-box;
   margin: 0 auto;
-  font-family: 'NotoSans';
 }
 
 .arrowLeft,
@@ -39,7 +38,6 @@
   cursor: pointer;
   padding: 40px 0px;
   background: transparent;
-  font-family: 'NotoSans';
   font-size: 45px;
   font-weight: 500;
   text-align: center;
@@ -50,6 +48,5 @@
   background: #fffbf2;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-  font-family: 'NotoSans';
   font-weight: bold;
 }

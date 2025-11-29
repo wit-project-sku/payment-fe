@@ -11,7 +11,6 @@
   align-items: center;
   padding: 30px 50px;
   position: relative;
-  font-family: 'NotoSans';
   font-size: 24px;
 }
 
@@ -27,7 +26,6 @@
 
 .name {
   flex: 1;
-  font-family: 'NotoSans';
   font-size: 30px;
   font-weight: 500;
 }
@@ -41,26 +39,24 @@
   overflow: hidden;
 }
 
-.counter button {
+.counterBtn {
   width: 45px;
   height: 45px;
   border: none;
   background: white;
   cursor: pointer;
-  font-family: 'NotoSans';
   font-size: 25px;
   font-weight: 500;
   text-align: center;
 }
 
-.counter span {
+.qty {
   width: 45px;
   height: 45px;
   background: #d9d9d9;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'NotoSans';
   font-size: 25px;
   font-weight: 500;
 }
@@ -68,7 +64,6 @@
 .price {
   width: 120px;
   text-align: right;
-  font-family: 'NotoSans';
   font-size: 25px;
   font-weight: 500;
   margin-right: 50px;
@@ -79,7 +74,6 @@
   border: none;
   cursor: pointer;
   color: #666;
-  font-family: 'NotoSans';
   font-size: 30px;
   font-weight: 600;
 }

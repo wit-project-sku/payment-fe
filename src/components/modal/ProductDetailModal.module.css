@@ -1,0 +1,160 @@
+@font-face {
+  font-family: 'NotoSans';
+  src: url('../../assets/font/NotoSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+* {
+  font-family: 'NotoSans';
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 325px;
+  z-index: 9999;
+  font-family: 'NotoSans';
+}
+
+.modalBox {
+  width: 1300px;
+  min-height: 1600px;
+  background: #fffbf2;
+  border-radius: 24px;
+  padding: 50px 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.modalTitle {
+  font-size: 80px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.modalSubtitle {
+  font-size: 60px;
+  color: #4e4e4e;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.imageWrapper {
+  width: 800px;
+  height: 800px;
+  background: white;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.description {
+  width: 850px;
+  font-size: 35px;
+  font-weight: 600;
+  color: #444;
+  text-align: left;
+  margin-bottom: 0;
+  flex-grow: 1;
+}
+
+.price {
+  font-size: 70px;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.buttonRow {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  margin-top: 0;
+}
+
+.cancelBtn {
+  width: 350px;
+  height: 120px;
+  background: #666;
+  color: white;
+  font-size: 40px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  text-align: center;
+}
+
+.addBtn {
+  width: 350px;
+  height: 120px;
+  background: #1a7f31;
+  color: white;
+  font-size: 40px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  text-align: center;
+}
+
+.cancelBtn:hover {
+  background: #555;
+}
+
+.addBtn:hover {
+  background: #155f26;
+}
+
+.carouselContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carouselPrev,
+.carouselNext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 80px;
+  border: none;
+  color: #5e5e5e;
+  font-size: 100px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carouselPrev {
+  left: -120px;
+}
+
+.carouselNext {
+  right: -120px;
+}

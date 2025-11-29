@@ -1,0 +1,328 @@
+@font-face {
+  font-family: 'NotoSans';
+  src: url('@assets/font/NotoSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+.container {
+  font-family: 'NotoSans';
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.searchBox {
+  font-family: 'NotoSans';
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  padding: 20px 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.searchLabel {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.searchInput {
+  flex: 1;
+  height: 36px;
+  padding: 0 10px;
+  font-family: 'NotoSans';
+  font-size: 20px;
+}
+
+.categorySection {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.categoryBox {
+  width: 170px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.categoryBoxTitle {
+  font-family: 'NotoSans';
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  padding: 20px 0;
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.categoryBoxList {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoryItem {
+  font-family: 'NotoSans';
+  padding: 20px 0px;
+  font-size: 20px;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  cursor: pointer;
+  color: #111;
+}
+
+.categoryItemActive {
+  background: #1f6aff;
+  color: white;
+  font-family: 'NotoSans';
+  font-size: 20px;
+}
+
+.tableWrapper {
+  flex: 1;
+  font-family: 'NotoSans';
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  margin-top: 0;
+  background-clip: padding-box;
+}
+
+.tableHeader {
+  font-family: 'NotoSans';
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.8fr 1.5fr 0.6fr;
+  padding: 20px 30px;
+  border-bottom: 1px solid #e5e5e5;
+  background: #ffffff;
+  font-weight: 600;
+  font-size: 20px;
+  background-color: #ffffff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  text-align: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.tableRow {
+  font-family: 'NotoSans';
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.8fr 1.5fr 0.6fr;
+  padding: 20px 30px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 18px;
+  background-color: #ffffff;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.tableRow div:nth-child(4),
+.tableRow div:nth-child(5) {
+  display: flex;
+  align-items: center;
+}
+
+.tableRow div:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.tableWrapper > div {
+  background-color: #ffffff;
+}
+
+.editIcon {
+  cursor: pointer;
+  color: #2563ff;
+}
+
+.tableRow > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.tablePlusRow {
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #1f6aff;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modalBox {
+  width: 1000px;
+  height: 700px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalClose {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.categoryInput {
+  width: 900px;
+  font-size: 20px;
+  font-family: 'NotoSans';
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: center;
+  outline: none;
+}
+
+.categoryAddButton {
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #2563ff;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  height: 42px;
+  padding: 0 10px;
+  font-size: 20px;
+  border: 1px solid #c1c1c1;
+  border-radius: 6px;
+  font-family: 'NotoSans';
+}
+
+.row {
+  display: flex;
+  gap: 30px;
+}
+
+.col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.priceRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.unit {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.select {
+  width: 100%;
+  height: 42px;
+  border: 1px solid #c1c1c1;
+  border-radius: 6px;
+  padding: 0 12px;
+  font-size: 18px;
+  font-family: 'NotoSans';
+}
+
+.fileRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.fileButton {
+  padding: 10px 18px;
+  background: #1f6aff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.textarea {
+  width: 900px;
+  height: 170px;
+  padding: 10px;
+  font-size: 18px;
+  border: 1px solid #c1c1c1;
+  border-radius: 6px;
+  resize: none;
+  font-family: 'NotoSans';
+}
+
+.limit {
+  text-align: right;
+  font-size: 14px;
+  color: #888;
+  margin-top: -10px;
+}
+
+.submitButton {
+  width: 160px;
+  align-self: flex-end;
+  padding: 12px 0;
+  font-size: 20px;
+  background: #1f6aff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  text-align: center;
+}

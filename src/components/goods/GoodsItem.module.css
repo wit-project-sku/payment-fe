@@ -19,10 +19,10 @@
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .name {
-  font-weight: bold;
   font-size: 35px;
   line-height: 50px;
   color: #000000;
@@ -31,7 +31,7 @@
 }
 
 .desc {
-  font-size: 35px;
+  font-size: 30px;
   color: #8e8e8e;
   font-family: 'NotoSans';
   font-weight: 600;
