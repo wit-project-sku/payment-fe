@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import KioskLayout from '@layouts/KioskLayout';
 import AdminLayout from '@layouts/AdminLayout';
@@ -45,6 +45,7 @@ export default function AppRouter() {
     <Router>
       <Suspense fallback={<PageLoader />}>
         <Routes>
+          <Route path='/' element={<Navigate to='/kiosk/store' replace />} />
           <Route path='/kiosk/*' element={<KioskLayout />}>
             {kioskRoutes.map(({ path, element }) => (
               <Route key={path} path={path} element={element} />
