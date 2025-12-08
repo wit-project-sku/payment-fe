@@ -132,7 +132,6 @@ export default function AddressPage() {
         className={styles.inputField}
       />
 
-      {/* 약관 박스 */}
       <div className={styles.agreeBox}>
         <div className={styles.agreeTitle}>약관 동의</div>
 

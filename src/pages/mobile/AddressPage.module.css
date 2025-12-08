@@ -126,7 +126,7 @@
   content: '✔';
   position: absolute;
   top: -2px;
-  left: 4px;
+  left: 2px;
   font-size: 18px;
   color: #5d4e37;
   font-weight: 700;
@@ -264,7 +264,7 @@
   font-weight: 700;
   cursor: pointer;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 }
 
 .icon {
