@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './MobileMainPage.module.css';
 import noticeImg from '@assets/images/notice.png';
+import pencilImg from '@assets/images/pencil.png';
+import paperImg from '@assets/images/paper.png';
+import refundImg from '@assets/images/refund.png';
 
 export default function MobileMainPage() {
   const navigate = useNavigate();
@@ -27,7 +30,7 @@ export default function MobileMainPage() {
 
         <button className={`${styles.mainButton} ${styles.orderButton}`} onClick={handleOrderClick}>
           <div className={styles.buttonIconCircle}>
-            <span className={styles.buttonIcon}>🧾</span>
+            <img src={pencilImg} alt='pencil' className={styles.buttonIcon} />
           </div>
           <div className={styles.buttonTextArea}>
             <div className={styles.buttonTitle}>주문 정보 입력</div>
@@ -37,7 +40,7 @@ export default function MobileMainPage() {
 
         <button className={`${styles.mainButton} ${styles.deliveryButton}`} onClick={handleDeliveryClick}>
           <div className={styles.buttonIconCircle}>
-            <span className={styles.buttonIcon}>✅</span>
+            <img src={paperImg} alt='paper' className={styles.buttonIcon} />
           </div>
           <div className={styles.buttonTextArea}>
             <div className={styles.buttonTitle}>주문 조회</div>
@@ -47,7 +50,7 @@ export default function MobileMainPage() {
 
         <button className={`${styles.mainButton} ${styles.refundButton}`} onClick={handleRefundClick}>
           <div className={styles.buttonIconCircle}>
-            <span className={styles.buttonIcon}>↺</span>
+            <img src={refundImg} alt='refund' className={styles.buttonIcon} />
           </div>
           <div className={styles.buttonTextArea}>
             <div className={styles.buttonTitle}>환불/교환 신청</div>
