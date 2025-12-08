@@ -87,7 +87,7 @@ export default function PaymentModal({ items, onBack, onTimeout, onComplete, onF
 
       <div className={styles.amountBox}>
         <span className={styles.amountLabel}>결제 금액</span>
-        <span className={styles.amountValue}>{totalPrice.toLocaleString()}원</span>
+        <span className={styles.amountValue}>{totalPrice.toLocaleString() + 3000}원</span>
       </div>
 
       <div className={styles.paymentImage}></div>

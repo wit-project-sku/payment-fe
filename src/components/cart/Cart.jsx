@@ -30,22 +30,26 @@ export default function Cart({ items, onRemove, onIncrease, onDecrease }) {
         <div className={styles.left}>
           <div className={styles.itemsBoxContainer}>
             <div className={styles.itemsBox}>
-              {items.map((item) => (
-                <CartItem
-                  key={item.name}
-                  item={item}
-                  onRemove={() => onRemove(item.name)}
-                  onIncrease={() => onIncrease(item.name)}
-                  onDecrease={() => onDecrease(item.name)}
-                />
-              ))}
+              {items.length === 0 ? (
+                <div className={styles.emptyMessage}>장바구니가 비어있습니다</div>
+              ) : (
+                items.map((item) => (
+                  <CartItem
+                    key={item.name}
+                    item={item}
+                    onRemove={() => onRemove(item.name)}
+                    onIncrease={() => onIncrease(item.name)}
+                    onDecrease={() => onDecrease(item.name)}
+                  />
+                ))
+              )}
             </div>
           </div>
         </div>
 
         <div className={styles.right}>
           <div className={styles.summaryTitle}>
-            선택한 상품 <span className={styles.red}>{items.reduce((sum, item) => sum + item.quantity, 0)}개</span>
+            선택한 상품 <span className={styles.red}>{items.reduce((sum, item) => sum + item.quantity, 0)}</span>개
           </div>
 
           <div className={styles.totalLabel}>총 결제 금액</div>
@@ -56,7 +60,7 @@ export default function Cart({ items, onRemove, onIncrease, onDecrease }) {
             className={styles.payButton}
             onClick={() => setShowNotice(true)}
             disabled={items.length === 0}
-            style={items.length === 0 ? { backgroundColor: '#d1d5dc', cursor: 'not-allowed' } : {}}
+            style={items.length === 0 ? { backgroundColor: '#8B7355', cursor: 'not-allowed' } : {}}
           >
             결제하기
           </button>

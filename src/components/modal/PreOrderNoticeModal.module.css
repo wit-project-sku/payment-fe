@@ -5,7 +5,6 @@
   display: block;
 }
 
-/* 제목 */
 .title {
   font-size: 72px;
   font-weight: 500;
@@ -14,7 +13,6 @@
   color: #4b3d2a;
 }
 
-/* 안내 박스 */
 .noticeBox {
   width: 1100px;
   height: 700px;
@@ -26,7 +24,11 @@
   margin-bottom: 50px;
 }
 
-/* 섹션 */
+.icon {
+  width: 50px;
+  height: 50px;
+}
+
 .section {
   margin-bottom: 30px;
 }
@@ -35,13 +37,12 @@
   margin-bottom: 0;
 }
 
-/* 각 항목 아이콘 + 텍스트 */
 .sectionTitle {
   font-size: 45px;
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 60px;
+  gap: 25px;
   margin-bottom: 10px;
   margin-left: 10px;
 }
@@ -50,7 +51,7 @@
   font-size: 36px;
   color: #666;
   line-height: 1.5;
-  margin-left: 120px;
+  margin-left: 80px;
 }
 
 .red {
@@ -71,7 +72,7 @@
 
 .confirmText {
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 400;
   color: #4b3d2a;
 }
 
@@ -94,7 +95,7 @@
   border-radius: 15px;
   border: none;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 /* 취소 버튼 */

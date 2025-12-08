@@ -64,8 +64,8 @@ export default function MobileMainPage() {
             <span className={styles.noticeTitle}>안내</span>
           </div>
           <p className={styles.noticeText}>
-            본 제품은 개인화 맞춤 제작 상품으로 제작 완료 후 단순 변심에 의한 반품은 불가능합니다. 불량품의 경우에만
-            교환/환불이 가능합니다.
+            본 제품은 개인화 맞춤 제작 상품으로 제작 완료 후 <b>단순 변심에 의한 반품은 불가능합니다.</b> 불량품의
+            경우에만 교환/환불이 가능합니다.
           </p>
         </section>
       </div>

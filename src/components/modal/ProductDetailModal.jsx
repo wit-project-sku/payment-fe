@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { getProductDetail } from '@api/productApi';
 import styles from './ProductDetailModal.module.css';
 import WarningModal from '@modals/WarningModal';
+import leftImg from '@assets/images/left.png';
+import rightImg from '@assets/images/right.png';
 
 export default function ProductDetailModal({ item, onClose, onAdd }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -48,7 +50,7 @@ export default function ProductDetailModal({ item, onClose, onAdd }) {
                 setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
               }}
             >
-              ‹
+              <img src={leftImg} alt='left' className={styles.arrowIcon} />
             </button>
 
             <img src={images[currentIndex]} alt={detail?.name} className={styles.mainImage} />
@@ -60,7 +62,7 @@ export default function ProductDetailModal({ item, onClose, onAdd }) {
                 setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
               }}
             >
-              ›
+              <img src={rightImg} alt='right' className={styles.arrowIcon} />
             </button>
           </div>
           <div className={styles.carouselDots}>

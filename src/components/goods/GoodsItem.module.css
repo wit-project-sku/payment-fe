@@ -7,12 +7,12 @@
 
 .card {
   width: 440px;
-  height: 680px;
+  height: 700px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 40px;
-  padding: 30px;
+  padding: 30px 30px 0px;
   box-sizing: border-box;
   background: #f7efe1;
   border-radius: 20px;
@@ -31,18 +31,17 @@
   cursor: pointer;
 }
 
-/* 상품명 */
 .name {
   margin-top: 10px;
   font-size: 32px;
-  line-height: 40px;
+  line-height: 160%;
   color: #5d4e37;
   font-family: 'NotoSans';
   font-weight: 700;
-  word-break: keep-all;
 }
 
 .desc {
+  margin-top: 5px;
   font-size: 24px;
   line-height: 32px;
   color: #aca193;
@@ -52,11 +51,12 @@
 
 .price {
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
   left: 30px;
   font-size: 40px;
+  margin-top: 15px;
   line-height: 40px;
   color: #8b7355;
   font-family: 'NotoSans';
-  font-weight: 800;
+  font-weight: 600;
 }

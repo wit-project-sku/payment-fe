@@ -84,14 +84,16 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+  border: 1px solid #e5e5e5;
+  border-radius: 25px;
 }
 
 .description {
   width: 900px;
   height: 300px;
   font-size: 35px;
-  font-weight: 600;
-  color: #444;
+  font-weight: 400;
+  color: #8b7355;
   text-align: left;
 }
 
@@ -112,7 +114,7 @@
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
 }
 
@@ -131,12 +133,12 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 80px;
+  width: 120px;
   height: 80px;
   border: none;
   color: #5e5e5e;
   font-size: 100px;
-  font-weight: bold;
+  font-weight: 400;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -144,17 +146,17 @@
 }
 
 .carouselPrev {
-  left: -120px;
+  left: -150px;
 }
 
 .carouselNext {
-  right: -120px;
+  right: -150px;
 }
 
 .subDescriptionTitle {
   width: 900px;
   font-size: 38px;
-  font-weight: 700;
+  font-weight: 600;
   color: #6b5b4a;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -200,14 +202,14 @@
 
 .priceLabel {
   font-size: 36px;
-  font-weight: 600;
+  font-weight: 400;
   color: #000;
 }
 
 .priceValue {
   font-size: 36px;
-  font-weight: 700;
-  color: #000;
+  font-weight: 600;
+  color: #5d4e37;
 }
 
 .price {
@@ -227,9 +229,9 @@
 }
 
 .quantityLabel {
-  font-size: 32px;
-  font-weight: 600;
-  color: #6b5b4a;
+  font-size: 36px;
+  font-weight: 400;
+  color: #000;
 }
 
 .quantityControl {
@@ -245,7 +247,7 @@
   border: none;
   border-radius: 8px;
   font-size: 40px;
-  font-weight: 700;
+  font-weight: 400;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -255,6 +257,6 @@
 
 .qtyNumber {
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 500;
   color: #6b5b4a;
 }

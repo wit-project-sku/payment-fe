@@ -26,17 +26,15 @@
   font-family: 'NotoSans';
 }
 
-/* 제목 */
 .modalTitle {
   font-family: 'NotoSans';
   text-align: center;
   margin-bottom: 60px;
   font-size: 96px;
   font-weight: 500;
-  color: #4b3d2a;
+  color: #5d4e37;
 }
 
-/* 주문 목록 영역 */
 .modalItems {
   width: 1100px;
   height: 1000px;
@@ -50,7 +48,6 @@
   font-weight: 500;
 }
 
-/* 각 주문 카드 */
 .modalRow {
   display: flex;
   align-items: center;
@@ -59,6 +56,7 @@
   background: #faf5ef;
   border-radius: 20px;
   font-size: 38px;
+  color: #5d4e37;
   font-family: 'NotoSans';
   border: 1px solid #f0e0cc;
 }
@@ -104,12 +102,12 @@
   justify-content: space-between;
   align-items: center;
   font-size: 45px;
-  color: #6b5b4a;
+  color: #5e5e5e;
   margin-bottom: 8px;
 }
 
 .summaryRow span:last-child {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .summaryDivider {
@@ -123,7 +121,7 @@
   align-items: center;
   font-size: 70px;
   font-weight: 600;
-  color: #4b3d2a;
+  color: #5d4e37;
 }
 
 .summaryTotal span:last-child {
@@ -131,7 +129,6 @@
   font-weight: 600;
 }
 
-/* 버튼 영역 */
 .modalButtons {
   display: flex;
   justify-content: center;
@@ -139,10 +136,10 @@
   gap: 60px;
   width: 100%;
   margin-top: 0;
+  font-weight: 500;
   font-family: 'NotoSans';
 }
 
-/* 돌아가기 버튼 */
 .modalBack {
   width: 520px;
   height: 120px;
@@ -150,13 +147,11 @@
   border-radius: 20px;
   border: none;
   cursor: pointer;
-  font-weight: 700;
   text-align: center;
   background: #5d4e37;
   color: #ffffff;
 }
 
-/* 결제하기 버튼 */
 .modalPay {
   width: 520px;
   height: 120px;
@@ -164,7 +159,6 @@
   border-radius: 20px;
   border: none;
   cursor: pointer;
-  font-weight: 700;
   text-align: center;
   background: #6b8e6f;
   color: white;

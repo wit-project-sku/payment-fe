@@ -20,7 +20,7 @@ export default function CartItem({ item, onRemove, onIncrease, onDecrease }) {
       <div className={styles.price}>{item.price.toLocaleString()}원</div>
 
       <button className={styles.remove} onClick={() => onRemove(item.id)}>
-        X
+        x
       </button>
     </div>
   );
