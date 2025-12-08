@@ -8,12 +8,11 @@
 }
 
 .backButton {
-  position: absolute;
-  top: 24px;
-  left: 24px;
-  width: 15px;
-  height: 15px;
+  position: relative;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .iconBox {
@@ -78,7 +77,6 @@
   background: transparent;
 }
 
-/* 약관 박스 */
 .agreeBox {
   border: 1px solid #8b7355;
   background: #fffbf2;
@@ -198,7 +196,6 @@
   font-weight: 700;
 }
 
-/* 약관 모달 오버레이 */
 .termsOverlay {
   position: fixed;
   top: 0;
@@ -212,7 +209,6 @@
   z-index: 9999;
 }
 
-/* 약관 모달 본문 */
 .termsModal {
   width: 100%;
   max-width: 480px;
@@ -226,7 +222,15 @@
   animation: slideUp 0.25s ease-out;
 }
 
-/* 상단 바 (드래그 표시) */
+.termsModal::-webkit-scrollbar {
+  display: none;
+}
+
+.termsModal {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .termsBar {
   width: 100px;
   height: 6px;

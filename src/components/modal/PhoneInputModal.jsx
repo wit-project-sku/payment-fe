@@ -31,7 +31,7 @@ export default function PhoneInputModal({ onBack, onNext }) {
       alert('전화번호를 정확히 입력해주세요.');
       return;
     }
-    useUserStore.getState().setPhone(formattedPhone);
+    useUserStore.getState().setPhone(digits);
     onNext(formattedPhone);
   };
 
@@ -74,7 +74,7 @@ export default function PhoneInputModal({ onBack, onNext }) {
           </button>
         </div>
 
-        <button className={styles.confirmBtn} onClick={handleSubmit} disabled={digits.length !== 11}>
+        <button className={styles.confirmBtn} onClick={handleSubmit} disabled={formattedPhone.length !== 13}>
           확인
         </button>
       </div>

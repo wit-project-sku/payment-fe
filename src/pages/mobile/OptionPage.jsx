@@ -1,104 +1,62 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './OptionPage.module.css';
-import caseImg from '@/assets/images/warn.png';
-import mugImg from '@/assets/images/warn.png';
 import leftArrow from '@assets/images/leftArrow.png';
 
 export default function OptionPage() {
   const [selectedOption, setSelectedOption] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const orders = location.state?.orders || [];
 
-  const items = [
-    {
-      id: 1,
-      name: 'WITH > AR캡날 자개 문양 폰케이스',
-      qty: 1,
-      image: caseImg,
-      options: [
-        'iPhone 17',
-        'iPhone 17 Air',
-        'iPhone 17 Pro',
-        'iPhone 17 Pro Max',
-        'iPhone 16',
-        'iPhone 16 Plus',
-        'iPhone 16 Pro',
-        'iPhone 16 Pro Max',
-        'iPhone 15',
-        'iPhone 15 Plus',
-        'iPhone 15 Pro',
-        'iPhone 15 Pro Max',
-        'iPhone 14',
-        'iPhone 14 Plus',
-        'iPhone 14 Pro',
-        'iPhone 14 Pro Max',
-        'iPhone 13',
-        'iPhone 13 Pro',
-        'iPhone 13 Pro Max',
-        'iPhone 12',
-        'iPhone 12 Pro',
-        'iPhone 12 Pro Max',
-        '[SAMSUNG] S25',
-        '[SAMSUNG] S25+',
-        '[SAMSUNG] S25 ULTRA',
-        '[SAMSUNG] S24',
-        '[SAMSUNG] S24+',
-        '[SAMSUNG] S24+ ULTRA',
-        '[SAMSUNG] S23',
-        '[SAMSUNG] S23+',
-        '[SAMSUNG] S23+ ULTRA',
-        '[SAMSUNG] Z FLIP 7',
-        '[SAMSUNG] Z FLIP 6',
-        '[SAMSUNG] Z FLIP 5',
-        '[SAMSUNG] Z FLIP 4',
-        '[SAMSUNG] Z FLIP 3',
-      ],
-    },
-    {
-      id: 2,
-      name: 'WITH > AR합성 머그컵',
-      qty: 1,
-      image: mugImg,
-      options: null,
-    },
-    {
-      id: 2,
-      name: 'WITH > AR합성 머그컵',
-      qty: 1,
-      image: mugImg,
-      options: null,
-    },
-    {
-      id: 2,
-      name: 'WITH > AR합성 머그컵',
-      qty: 1,
-      image: mugImg,
-      options: null,
-    },
-    {
-      id: 2,
-      name: 'WITH > AR합성 머그컵',
-      qty: 1,
-      image: mugImg,
-      options: null,
-    },
-    {
-      id: 2,
-      name: 'WITH > AR합성 머그컵',
-      qty: 1,
-      image: mugImg,
-      options: null,
-    },
-    {
-      id: 2,
-      name: 'WITH > AR합성 머그컵',
-      qty: 1,
-      image: mugImg,
-      options: null,
-    },
-  ];
+  const items = orders.map((order) => ({
+    id: order.paymentId,
+    name: order.items[0]?.productName || '상품명 없음',
+    qty: 1,
+    image: order.items[0]?.imageUrl,
+    options: [
+      'iPhone 17',
+      'iPhone 17 Air',
+      'iPhone 17 Pro',
+      'iPhone 17 Pro Max',
+      'iPhone 16',
+      'iPhone 16 Plus',
+      'iPhone 16 Pro',
+      'iPhone 16 Pro Max',
+      'iPhone 15',
+      'iPhone 15 Plus',
+      'iPhone 15 Pro',
+      'iPhone 15 Pro Max',
+      'iPhone 14',
+      'iPhone 14 Plus',
+      'iPhone 14 Pro',
+      'iPhone 14 Pro Max',
+      'iPhone 13',
+      'iPhone 13 Pro',
+      'iPhone 13 Pro Max',
+      'iPhone 12',
+      'iPhone 12 Pro',
+      'iPhone 12 Pro Max',
+      '[SAMSUNG] S25',
+      '[SAMSUNG] S25+',
+      '[SAMSUNG] S25 ULTRA',
+      '[SAMSUNG] S24',
+      '[SAMSUNG] S24+',
+      '[SAMSUNG] S24+ ULTRA',
+      '[SAMSUNG] S23',
+      '[SAMSUNG] S23+',
+      '[SAMSUNG] S23+ ULTRA',
+      '[SAMSUNG] Z FLIP 7',
+      '[SAMSUNG] Z FLIP 6',
+      '[SAMSUNG] Z FLIP 5',
+      '[SAMSUNG] Z FLIP 4',
+      '[SAMSUNG] Z FLIP 3',
+    ],
+  }));
 
-  const isNextEnabled = Boolean(selectedOption);
+  const requiresOption = items.some((item) => item.name?.includes('케이스'));
+
+  const isNextEnabled = requiresOption ? Boolean(selectedOption) : true;
 
   const handleNext = () => {
     if (!isNextEnabled) return;
@@ -121,7 +79,7 @@ export default function OptionPage() {
             </div>
           </div>
 
-          {item.options && (
+          {item.name?.includes('케이스') && item.options?.length > 0 && (
             <select
               className={styles.select}
               value={selectedOption}

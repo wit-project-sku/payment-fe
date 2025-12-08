@@ -1,7 +1,6 @@
 import CartItem from './CartItem';
 import styles from './Cart.module.css';
-import { useState, useEffect } from 'react';
-import { approvePayment } from '@api/payment';
+import { useState } from 'react';
 import OrderModal from '@modals/OrderModal';
 import PaymentModal from '@modals/PaymentModal';
 import PreOrderNoticeModal from '@modals/PreOrderNoticeModal';
@@ -11,27 +10,19 @@ import PaymentCompleteModal from '@modals/PaymentCompleteModal';
 import FailModal from '@modals/FailModal';
 
 export default function Cart({ items, onRemove, onIncrease, onDecrease }) {
-  const [showNotice, setShowNotice] = useState(false); // 1) 안내사항
-  const [showOrder, setShowOrder] = useState(false); // 2) 주문 내역
-  const [showPhone, setShowPhone] = useState(false); // 3) 전화번호 입력
-  const [showReturnWarning, setShowReturnWarning] = useState(false); // 3-1) 제작 후 반품 불가 안내
-  const [showPayment, setShowPayment] = useState(false); // 4) 결제 안내
-  const [showComplete, setShowComplete] = useState(false); // 5) 결제 완료
-  const [showTimeout, setShowTimeout] = useState(false); // 6) 시간 초과
+  const [showNotice, setShowNotice] = useState(false);
+  const [showOrder, setShowOrder] = useState(false);
+  const [showPhone, setShowPhone] = useState(false);
+  const [showReturnWarning, setShowReturnWarning] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
+  const [showComplete, setShowComplete] = useState(false);
+  const [showTimeout, setShowTimeout] = useState(false);
+
+  // ★ 추가: network/lack 실패 모달 표시용
+  const [failType, setFailType] = useState(null);
+
   const [phone, setPhone] = useState(null);
   const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-  useEffect(() => {
-    if (showPayment) {
-      approvePayment({ amount: totalPrice, tax: 0, svc: 0, inst: '00', noSign: true })
-        .then((res) => {
-          console.log('결제 승인 응답:', res);
-        })
-        .catch((err) => {
-          console.error('결제 승인 오류:', err);
-        });
-    }
-  }, [showPayment, totalPrice]);
 
   return (
     <>
@@ -51,6 +42,7 @@ export default function Cart({ items, onRemove, onIncrease, onDecrease }) {
             </div>
           </div>
         </div>
+
         <div className={styles.right}>
           <div className={styles.summaryTitle}>
             선택한 상품 <span className={styles.red}>{items.reduce((sum, item) => sum + item.quantity, 0)}개</span>
@@ -140,10 +132,15 @@ export default function Cart({ items, onRemove, onIncrease, onDecrease }) {
             setShowPayment(false);
             setShowComplete(true);
           }}
+          onFail={(type) => {
+            setShowPayment(false);
+            setFailType(type);
+          }}
         />
       )}
 
       {showComplete && <PaymentCompleteModal onClose={() => setShowComplete(false)} />}
+
       {showTimeout && (
         <FailModal
           type='timeout'
@@ -151,6 +148,18 @@ export default function Cart({ items, onRemove, onIncrease, onDecrease }) {
           onClose={() => setShowTimeout(false)}
           onRetry={() => {
             setShowTimeout(false);
+            setShowPayment(true);
+          }}
+        />
+      )}
+
+      {failType && (
+        <FailModal
+          type={failType}
+          amount={totalPrice}
+          onClose={() => setFailType(null)}
+          onRetry={() => {
+            setFailType(null);
             setShowPayment(true);
           }}
         />

@@ -1,11 +1,12 @@
 .container {
   padding-top: 40px;
+  position: relative;
 }
 
 .backButton {
   position: absolute;
   top: 24px;
-  left: 24px;
+  left: 4px;
   width: 15px;
   height: 15px;
   cursor: pointer;

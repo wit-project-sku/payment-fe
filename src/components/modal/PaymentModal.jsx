@@ -1,9 +1,58 @@
 import Modal from '@commons/Modal';
 import styles from './PaymentModal.module.css';
 import { useEffect, useState } from 'react';
+import { approvePayment } from '@api/payment';
 
-export default function PaymentModal({ items, onBack, onTimeout, onComplete }) {
+export default function PaymentModal({ items, onBack, onTimeout, onComplete, onFail }) {
   const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  useEffect(() => {
+    const phoneStored = localStorage.getItem('user-phone');
+    const imageStored = localStorage.getItem('image-url');
+
+    let phoneNumber = '';
+    let imageUrl = '';
+
+    if (phoneStored) {
+      try {
+        const parsed = JSON.parse(phoneStored).state || {};
+        phoneNumber = parsed.phone || '';
+      } catch (err) {
+        console.error('전화번호 파싱 실패:', err);
+      }
+    }
+
+    if (imageStored) {
+      imageUrl = imageStored;
+    }
+
+    const payload = {
+      items: items.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
+      })),
+      totalAmount: totalPrice + 3000,
+      phoneNumber,
+      inst: '00',
+      imageUrl,
+      delivery: true,
+    };
+
+    approvePayment(payload)
+      .then((res) => {
+        const success = res?.success === true;
+
+        if (success) {
+          if (typeof onComplete === 'function') onComplete();
+        } else {
+          if (typeof onFail === 'function') onFail('network');
+        }
+      })
+      .catch((err) => {
+        console.error('결제 승인 API 호출 실패:', err);
+        if (typeof onFail === 'function') onFail('network');
+      });
+  }, []);
 
   const [progress, setProgress] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState(60);
@@ -12,8 +61,6 @@ export default function PaymentModal({ items, onBack, onTimeout, onComplete }) {
     const interval = setInterval(() => {
       setSecondsLeft((sec) => {
         const next = sec - 1;
-
-        // progress 계산
         const elapsed = 60 - next;
         const progressValue = (elapsed / 60) * 100;
         setProgress(progressValue);

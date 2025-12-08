@@ -51,7 +51,7 @@ export default function AppRouter() {
 
   const mobileRoutes = [
     { path: '', element: <MobileMainPage /> },
-    { path: 'order', element: <OptionPage /> },
+    { path: 'option', element: <OptionPage /> },
     { path: 'search', element: <SearchPage /> },
     { path: 'address', element: <AddressPage /> },
     { path: 'delivery', element: <DeliveryPage /> },

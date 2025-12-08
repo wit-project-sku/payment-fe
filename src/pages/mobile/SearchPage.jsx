@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { fetchOrderByPhone } from '@api/search';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './SearchPage.module.css';
 import leftArrow from '@assets/images/leftArrow.png';
@@ -6,11 +7,12 @@ import telImg from '@assets/images/tel.png';
 
 export default function SearchPage() {
   const [phone, setPhone] = useState('');
+  const [orders, setOrders] = useState([]);
 
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const mode = searchParams.get('type'); // "order" or "delivery"
+  const mode = searchParams.get('type');
 
   function formatPhone(num) {
     if (!num) return '';
@@ -20,7 +22,8 @@ export default function SearchPage() {
     return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 7)}-${cleaned.slice(7, 11)}`;
   }
 
-  const isValid = phone.length === 11;
+  const cleanedPhone = phone.replace(/[^0-9]/g, '');
+  const isValid = cleanedPhone.length === 11;
 
   return (
     <div className={styles.container}>
@@ -55,13 +58,48 @@ export default function SearchPage() {
         </div>
       </div>
 
+      {orders.length > 0 && (
+        <div className={styles.resultBox}>
+          {orders.map((order) => (
+            <div key={order.paymentId} className={styles.resultItem}>
+              <div className={styles.resultAddress}>{order.deliveryAddress}</div>
+              {order.items.map((it, idx) => (
+                <div key={idx} className={styles.resultProduct}>
+                  상품번호: {it.productId} / 옵션: {it.optionText}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
+
       <button
         className={`${styles.nextButton} ${isValid ? styles.active : ''}`}
         disabled={!isValid}
-        onClick={() => {
+        onClick={async () => {
           if (!isValid) return;
-          if (mode === 'order') navigate('/mobile/order');
-          else if (mode === 'delivery') navigate('/mobile/delivery');
+
+          localStorage.setItem(
+            'user-phone',
+            JSON.stringify({
+              state: { phone: cleanedPhone },
+              version: 0,
+            }),
+          );
+
+          try {
+            const res = await fetchOrderByPhone(cleanedPhone);
+            const data = res || [];
+
+            setOrders(data);
+
+            if (Array.isArray(data) && data.length > 0) {
+              const target = mode === 'order' ? '/mobile/option' : '/mobile/delivery';
+              navigate(target, { state: { orders: data } });
+            }
+          } catch (e) {
+            console.error('조회 실패:', e);
+          }
         }}
       >
         다음

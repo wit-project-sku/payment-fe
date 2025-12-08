@@ -22,7 +22,7 @@ export default function FailModal({ type, amount, onClose, onRetry }) {
     },
     network: {
       title: '통신 오류가 발생했습니다.',
-      desc: '잠시 후 자동으로 재시도합니다.',
+      desc: '오류가 계속될 경우 010-8792-2028로 문의바랍니다.',
       icon: warnImg,
       buttonText: '다시 시도',
       buttonAction: onRetry,
