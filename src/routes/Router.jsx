@@ -11,9 +11,12 @@ const PaymentHistoryPage = lazy(() => import('@pages/admin/PaymentHistoryPage'))
 const IssueTrackerPage = lazy(() => import('@pages/admin/IssueTrackerPage'));
 const LoginPage = lazy(() => import('@pages/admin/LoginPage'));
 
+const MobileMainPage = lazy(() => import('@pages/mobile/MobileMainPage'));
 const SearchPage = lazy(() => import('@pages/mobile/SearchPage'));
 const OptionPage = lazy(() => import('@pages/mobile/OptionPage'));
 const AddressPage = lazy(() => import('@pages/mobile/AddressPage'));
+const DeliveryPage = lazy(() => import('@pages/mobile/DeliveryPage'));
+const RefundPage = lazy(() => import('@pages/mobile/RefundPage'));
 
 const NotFoundPage = lazy(() => import('@pages/NotFound/NotFound'));
 
@@ -47,9 +50,12 @@ export default function AppRouter() {
   ];
 
   const mobileRoutes = [
+    { path: '', element: <MobileMainPage /> },
     { path: 'order', element: <OptionPage /> },
     { path: 'search', element: <SearchPage /> },
     { path: 'address', element: <AddressPage /> },
+    { path: 'delivery', element: <DeliveryPage /> },
+    { path: 'refund', element: <RefundPage /> },
     { path: '*', element: <NotFoundPage /> },
   ];
 

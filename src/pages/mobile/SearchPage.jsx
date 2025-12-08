@@ -1,12 +1,16 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './SearchPage.module.css';
-import phoneIcon from '@assets/images/warn.png';
+import leftArrow from '@assets/images/leftArrow.png';
+import telImg from '@assets/images/tel.png';
 
 export default function SearchPage() {
   const [phone, setPhone] = useState('');
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const mode = searchParams.get('type'); // "order" or "delivery"
 
   function formatPhone(num) {
     if (!num) return '';
@@ -20,14 +24,23 @@ export default function SearchPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>주문 조회</h1>
-      <p className={styles.subtitle}>결제 시 입력한 전화번호를 입력해주세요</p>
+      <img src={leftArrow} alt='back' className={styles.backButton} onClick={() => navigate(-1)} />
+      <h1 className={styles.title}>{mode === 'order' ? '주문 정보 조회' : '주문 내역 조회'}</h1>
+      <p className={styles.subtitle}>
+        {mode === 'order'
+          ? '결제 시 입력한 전화번호를 입력하시면 주문 정보를 확인할 수 있습니다.'
+          : '결제 시 입력한 전화번호를 입력하시면 주문 내역을 확인할 수 있습니다.'}
+      </p>
+
+      <div className={styles.telLabelWrapper}>
+        <img src={telImg} alt='tel' className={styles.telIcon} />
+        <span className={styles.telLabel}>전화번호</span>
+      </div>
 
       <div className={styles.inputWrapper}>
-        <img src={phoneIcon} alt='phone' className={styles.icon} />
         <input
           type='tel'
-          placeholder='010-1234-5678'
+          placeholder='전화번호를 입력해주세요'
           className={styles.input}
           value={formatPhone(phone)}
           onChange={(e) => setPhone(e.target.value.replace(/[^0-9]/g, ''))}
@@ -36,16 +49,20 @@ export default function SearchPage() {
       </div>
 
       <div className={styles.noticeBox}>
-        <span className={styles.noticeTitle}>안내</span>
-        <span className={styles.noticeText}>
+        <div className={styles.noticeTitle}>안내</div>
+        <div className={styles.noticeText}>
           결제 시 입력하신 전화번호를 입력하시면 주문 내역을 확인하실 수 있습니다.
-        </span>
+        </div>
       </div>
 
       <button
         className={`${styles.nextButton} ${isValid ? styles.active : ''}`}
         disabled={!isValid}
-        onClick={() => isValid && navigate('/mobile/order')}
+        onClick={() => {
+          if (!isValid) return;
+          if (mode === 'order') navigate('/mobile/order');
+          else if (mode === 'delivery') navigate('/mobile/delivery');
+        }}
       >
         다음
       </button>

@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './OptionPage.module.css';
-import caseImg from '@/assets/images/case.png';
-import mugImg from '@/assets/images/mug.jpg';
+import caseImg from '@/assets/images/warn.png';
+import mugImg from '@/assets/images/warn.png';
+import leftArrow from '@assets/images/leftArrow.png';
 
 export default function OptionPage() {
   const [selectedOption, setSelectedOption] = useState('');
@@ -14,7 +15,79 @@ export default function OptionPage() {
       name: 'WITH > AR캡날 자개 문양 폰케이스',
       qty: 1,
       image: caseImg,
-      options: ['iPhone 14', 'iPhone 15 Pro Max', 'Galaxy S23'],
+      options: [
+        'iPhone 17',
+        'iPhone 17 Air',
+        'iPhone 17 Pro',
+        'iPhone 17 Pro Max',
+        'iPhone 16',
+        'iPhone 16 Plus',
+        'iPhone 16 Pro',
+        'iPhone 16 Pro Max',
+        'iPhone 15',
+        'iPhone 15 Plus',
+        'iPhone 15 Pro',
+        'iPhone 15 Pro Max',
+        'iPhone 14',
+        'iPhone 14 Plus',
+        'iPhone 14 Pro',
+        'iPhone 14 Pro Max',
+        'iPhone 13',
+        'iPhone 13 Pro',
+        'iPhone 13 Pro Max',
+        'iPhone 12',
+        'iPhone 12 Pro',
+        'iPhone 12 Pro Max',
+        '[SAMSUNG] S25',
+        '[SAMSUNG] S25+',
+        '[SAMSUNG] S25 ULTRA',
+        '[SAMSUNG] S24',
+        '[SAMSUNG] S24+',
+        '[SAMSUNG] S24+ ULTRA',
+        '[SAMSUNG] S23',
+        '[SAMSUNG] S23+',
+        '[SAMSUNG] S23+ ULTRA',
+        '[SAMSUNG] Z FLIP 7',
+        '[SAMSUNG] Z FLIP 6',
+        '[SAMSUNG] Z FLIP 5',
+        '[SAMSUNG] Z FLIP 4',
+        '[SAMSUNG] Z FLIP 3',
+      ],
+    },
+    {
+      id: 2,
+      name: 'WITH > AR합성 머그컵',
+      qty: 1,
+      image: mugImg,
+      options: null,
+    },
+    {
+      id: 2,
+      name: 'WITH > AR합성 머그컵',
+      qty: 1,
+      image: mugImg,
+      options: null,
+    },
+    {
+      id: 2,
+      name: 'WITH > AR합성 머그컵',
+      qty: 1,
+      image: mugImg,
+      options: null,
+    },
+    {
+      id: 2,
+      name: 'WITH > AR합성 머그컵',
+      qty: 1,
+      image: mugImg,
+      options: null,
+    },
+    {
+      id: 2,
+      name: 'WITH > AR합성 머그컵',
+      qty: 1,
+      image: mugImg,
+      options: null,
     },
     {
       id: 2,
@@ -34,6 +107,7 @@ export default function OptionPage() {
 
   return (
     <div className={styles.container}>
+      <img src={leftArrow} alt='back' className={styles.backButton} onClick={() => navigate(-1)} />
       <h1 className={styles.title}>주문 내역</h1>
       <p className={styles.subtitle}>아래의 주문 내역을 확인해주세요</p>
 

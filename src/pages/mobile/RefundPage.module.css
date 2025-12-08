@@ -1,0 +1,245 @@
+.pageWrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: #fdf9f0;
+  display: flex;
+  justify-content: center;
+}
+
+.pageContainer {
+  width: 100%;
+  max-width: 420px;
+  padding: 50px 4px 50px;
+  box-sizing: border-box;
+  font-family: 'NotoSans';
+}
+
+.backButton {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.header {
+  margin-bottom: 15px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 600;
+  color: #5d4e37;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #5e5e5e;
+}
+
+/* 중요 박스 */
+.importantBox {
+  background: #faf5ef;
+  border: 1px solid #e4d2b5;
+  border-radius: 14px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+}
+
+.importantTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5d4e37;
+  margin-bottom: 8px;
+}
+
+.noticeIcon {
+  width: 15px;
+  height: 15px;
+  margin-right: 6px;
+}
+
+.importantText {
+  font-size: 13px;
+  color: #8b7355;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.importantEmphasis {
+  font-weight: 700;
+}
+
+.policyButton {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #5d4e37;
+  text-align: center;
+  background: #faf5ef;
+  font-size: 16px;
+  color: #8b7355;
+}
+
+/* form */
+.form {
+  margin-top: 15px;
+}
+
+.fieldGroup {
+  margin-bottom: 25px;
+}
+
+.fieldLabel {
+  font-size: 14px;
+  color: #5d4e37;
+  font-weight: 400;
+}
+
+.required {
+  color: #d14a4a;
+  margin-left: 2px;
+}
+
+.input,
+.select {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-bottom: 2px solid #e8dfd3;
+  background: transparent;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 20px;
+  color: #5d4e37;
+  margin-top: 5px;
+  outline: none;
+}
+
+.input:focus,
+.select:focus {
+  border-bottom: 2px solid #b48b5a;
+}
+
+.input::placeholder,
+.select option[value=''] {
+  color: #c2b6a4;
+}
+
+.select {
+  appearance: none;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 10px;
+  background: #faf5ef;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #aca193;
+  resize: none;
+}
+
+/* 업로드 박스 */
+.uploadBox {
+  width: 100%;
+  min-height: 150px;
+  border-radius: 14px;
+  border: 1px dashed #d4c7b3;
+  background: #fbf6ee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 18px 12px;
+}
+
+.uploadIcon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.uploadText {
+  font-size: 13px;
+  color: #5d4e37;
+  margin-bottom: 2px;
+}
+
+.uploadSubText {
+  font-size: 11px;
+  color: #a49279;
+}
+
+/* info boxes */
+.infoBox {
+  margin-top: 25px;
+  padding: 15px 20px;
+  border-radius: 14px;
+  border: 1px solid #e4decf;
+  background: #faf5ef;
+}
+
+.infoTitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: #5d4e37;
+  margin-bottom: 6px;
+}
+
+.infoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.infoList li {
+  font-size: 12px;
+  color: #6a6257;
+  line-height: 1.6;
+}
+
+.submitButton {
+  width: 100%;
+  height: 60px;
+  border-radius: 16px;
+  margin-top: 24px;
+  text-align: center;
+  border: none;
+  background: #f5ede1;
+  color: #8b7355;
+  font-size: 20px;
+}
+
+.submitButton.active {
+  background: #b48b5a;
+  color: #ffffff;
+}
+
+.footer {
+  margin-top: 26px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #e4decf;
+  background: #fffdf9;
+  font-size: 12px;
+  color: #8b7355;
+  text-align: center;
+}
+
+.footerQuestion {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #5d4e37;
+}
+
+.footerLine {
+  line-height: 1.5;
+}

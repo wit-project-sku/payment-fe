@@ -2,16 +2,26 @@
   padding-top: 40px;
 }
 
+.backButton {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
 .title {
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
+  color: #5d4e37;
   margin-bottom: 8px;
 }
 
 .subtitle {
   font-size: 18px;
-  color: #8e8e8e;
+  color: #5e5e5e;
   text-align: center;
   margin-bottom: 32px;
 }
@@ -21,7 +31,7 @@
   background: #fafafa;
   padding: 16px;
   border-radius: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   box-shadow: 0 0 0 1px #e8e8e8 inset;
 }
 
@@ -44,7 +54,7 @@
 
 .name {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 4px;
 }
 
@@ -57,27 +67,53 @@
   width: 100%;
   margin-top: 14px;
   padding: 12px;
+  max-height: 700px;
+  overflow-y: auto;
   border-radius: 12px;
   border: 1px solid #dcdcdc;
   font-size: 15px;
-  background: #fff;
-  box-sizing: border-box; /* 추가 */
+  background: #fbfbfb;
+  box-sizing: border-box;
+  appearance: none;
+  background-image: url('/src/assets/images/downArrow.png');
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 20px;
+  color: #8e8e8e;
+}
+
+.select option {
+  color: #5c4a32;
+}
+
+.select option[value=''] {
+  color: #8e8e8e !important;
+}
+
+.select:has(option:checked[value='']) {
+  color: #8e8e8e !important;
+  border-color: #dcdcdc !important;
+}
+
+.select:has(option:checked:not([value=''])) {
+  color: #d4a574 !important;
+  border-color: #d4a574 !important;
 }
 
 .nextButton {
   width: 100%;
-  margin-top: 40px;
   padding: 16px 0;
   border-radius: 14px;
   font-size: 18px;
-  font-weight: 600;
-  background: #e6e6e6;
-  color: #bcbcbc;
+  font-weight: 500;
+  background: #f5ede1;
+  color: #8b7355;
   border: none;
   text-align: center;
+  margin-bottom: 50px;
 }
 
 .nextButton.active {
-  background: #3e7bff;
+  background: #d4a574;
   color: #ffffff;
 }

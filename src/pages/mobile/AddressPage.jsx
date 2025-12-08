@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './AddressPage.module.css';
 import boxIcon from '@/assets/images/box.png';
+import leftArrow from '@assets/images/leftArrow.png';
+import profileImg from '@assets/images/profile.png';
+import locationImg from '@assets/images/location.png';
 
 export default function AddressPage() {
   const navigate = useNavigate();
@@ -52,7 +55,7 @@ export default function AddressPage() {
       if (termsType === 'purchase') {
         return { ...prev, agree1: true };
       }
-      if (termsType === 'exchange') {
+      if (termsType === 'refund') {
         return { ...prev, agree2: true };
       }
       return prev;
@@ -61,12 +64,13 @@ export default function AddressPage() {
 
   const handleSubmit = () => {
     if (!allAgreed) return;
-    // 실제 주문 완료 처리 로직 추가 가능
     alert('주문이 완료되었습니다.');
+    navigate('/mobile');
   };
 
   return (
     <div className={styles.pageContainer}>
+      <img src={leftArrow} alt='back' className={styles.backButton} onClick={() => navigate(-1)} />
       <div className={styles.iconBox}>
         <img src={boxIcon} alt='box' />
       </div>
@@ -74,7 +78,10 @@ export default function AddressPage() {
       <h1 className={styles.title}>배송지 정보</h1>
       <p className={styles.subTitle}>배송받을 주소를 입력해주세요</p>
 
-      <div className={styles.fieldLabel}>받는 분 이름</div>
+      <div className={styles.fieldRow}>
+        <img src={profileImg} alt='person' className={styles.icon} />
+        <div className={styles.fieldLabel}>받는 분 이름</div>
+      </div>
       <input
         name='name'
         value={form.name}
@@ -83,16 +90,28 @@ export default function AddressPage() {
         className={styles.inputField}
       />
 
-      <div className={styles.fieldLabel}>우편번호</div>
+      <div className={styles.fieldRow}>
+        <img src={locationImg} alt='location' className={styles.icon} />
+        <div className={styles.fieldLabel}>우편번호</div>
+      </div>
       <input
         name='zipcode'
         value={form.zipcode}
-        onChange={handleChange}
+        onChange={(e) => {
+          const v = e.target.value.replace(/[^0-9]/g, '').slice(0, 5);
+          setForm((prev) => ({ ...prev, zipcode: v }));
+        }}
         placeholder='12345'
         className={styles.inputField}
       />
+      {form.zipcode.length > 0 && form.zipcode.length !== 5 && (
+        <div className={styles.errorText}>우편번호가 올바르지 않습니다</div>
+      )}
 
-      <div className={styles.fieldLabel}>주소</div>
+      <div className={styles.fieldRow}>
+        <img src={locationImg} alt='location' className={styles.icon} />
+        <div className={styles.fieldLabel}>주소</div>
+      </div>
       <input
         name='address'
         value={form.address}
@@ -101,7 +120,10 @@ export default function AddressPage() {
         className={styles.inputField}
       />
 
-      <div className={styles.fieldLabel}>상세 주소</div>
+      <div className={styles.fieldRow}>
+        <img src={locationImg} alt='location' className={styles.icon} />
+        <div className={styles.fieldLabel}>상세 주소</div>
+      </div>
       <input
         name='detail'
         value={form.detail}
@@ -142,12 +164,12 @@ export default function AddressPage() {
               if (form.agree2) {
                 setForm((prev) => ({ ...prev, agree2: false }));
               } else {
-                openTermsModal('exchange');
+                openTermsModal('refund');
               }
             }}
           />
           <span className={styles.agreeText}>[필수] 불량품 교환/환불 정책에 동의합니다.</span>
-          <button type='button' className={styles.viewLink} onClick={() => openTermsModal('exchange')}>
+          <button type='button' className={styles.viewLink} onClick={() => openTermsModal('refund')}>
             [전체보기]
           </button>
         </label>
