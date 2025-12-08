@@ -26,8 +26,8 @@
 }
 
 .paymentTitle {
-  font-size: 70px;
-  font-weight: 700;
+  font-size: 80px;
+  font-weight: 600;
   margin-top: 60px;
   margin-bottom: 30px;
   text-align: center;
@@ -35,17 +35,33 @@
 }
 
 .paymentSubtitle {
-  font-size: 40px;
-  color: #b0b0b0;
+  font-size: 45px;
+  color: #8b7355;
   margin-bottom: 30px;
   text-align: center;
 }
 
-.paymentAmount {
-  font-size: 80px;
-  font-weight: 700;
-  color: #c00000;
-  margin-bottom: 170px;
+.amountBox {
+  background: #fff8ef;
+  padding: 40px 0;
+  margin: 40px auto;
+  border-radius: 16px;
+  text-align: center;
+  width: 950px;
+  height: 300px;
+}
+
+.amountLabel {
+  display: block;
+  font-size: 50px;
+  color: #8b7355;
+  margin-bottom: 10px;
+}
+
+.amountValue {
+  font-size: 90px;
+  font-weight: 600;
+  color: #c17d5b;
 }
 
 .paymentImage {
@@ -55,7 +71,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  margin-bottom: 150px;
+  margin-bottom: 90px;
 }
 
 .paymentBar {
@@ -66,7 +82,7 @@
   display: flex;
   align-items: center;
   padding: 4px;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
   overflow: hidden;
 }
 
@@ -75,20 +91,33 @@
   height: 27px;
   background: #39b54a;
   border-radius: 5px;
-  animation: fillBar 20s linear forwards;
+  animation: fillBar 60s linear forwards;
 }
 
 .paymentCancel {
-  width: 500px;
-  height: 200px;
-  border-radius: 10px;
-  background: #555555;
+  width: 950px;
+  height: 180px;
+  background: #8b7355;
   color: white;
-  font-size: 80px;
-  font-weight: 700;
+  font-size: 70px;
+  font-weight: 600;
   border: none;
+  border-radius: 25px;
   cursor: pointer;
   text-align: center;
+}
+
+.timerBadge {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  background: #bb7d5b;
+  color: white;
+  font-size: 32px;
+  font-weight: 600;
+  padding: 14px 34px;
+  border-radius: 40px;
+  font-family: 'NotoSans';
 }
 
 @keyframes fillBar {

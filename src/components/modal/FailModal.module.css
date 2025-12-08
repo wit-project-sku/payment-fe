@@ -1,0 +1,68 @@
+.modalWrapper {
+  width: 1300px;
+  height: 1600px;
+  padding: 60px 50px;
+  background: #ffffff;
+  border-radius: 28px;
+  text-align: center;
+  font-family: 'NotoSans';
+}
+
+.title {
+  font-size: 80px;
+  font-weight: 600;
+  color: #4a3a2a;
+  margin-bottom: 20px;
+}
+
+.desc {
+  font-size: 45px;
+  color: #8b7355;
+  margin-bottom: 70px;
+}
+
+.amountBox {
+  background: #fff8ef;
+  padding: 40px 0;
+  margin: 40px auto;
+  border-radius: 16px;
+  width: 950px;
+  height: 300px;
+}
+
+.amountLabel {
+  display: block;
+  font-size: 50px;
+  color: #8b7355;
+  margin-bottom: 10px;
+}
+
+.amountValue {
+  font-size: 90px;
+  font-weight: 600;
+  color: #c17d5b;
+}
+
+.icon {
+  width: 264px;
+  height: 360px;
+  margin: 60px auto;
+  display: block;
+}
+
+.actionButton {
+  width: 950px;
+  height: 170px;
+  background: #a38a68;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 60px;
+  font-weight: 500;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.actionButton:hover {
+  opacity: 0.92;
+}

@@ -1,27 +1,67 @@
+import Modal from '@commons/Modal';
 import styles from './PaymentModal.module.css';
+import { useEffect, useState } from 'react';
 
-export default function PaymentModal({ items, onClose }) {
+export default function PaymentModal({ items, onBack, onTimeout, onComplete }) {
   const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+  const [progress, setProgress] = useState(0);
+  const [secondsLeft, setSecondsLeft] = useState(60);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSecondsLeft((sec) => {
+        const next = sec - 1;
+
+        // progress 계산
+        const elapsed = 60 - next;
+        const progressValue = (elapsed / 60) * 100;
+        setProgress(progressValue);
+
+        if (next <= 0) {
+          clearInterval(interval);
+          if (typeof onTimeout === 'function') onTimeout();
+          return 0;
+        }
+
+        return next;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className={styles.modalOverlay}>
-      <div className={styles.paymentScreen}>
-        <h2 className={styles.paymentTitle}>카드를 넣어주세요.</h2>
+    <Modal onClose={onBack}>
+      <div className={styles.timerBadge}>{secondsLeft}초</div>
+      <h2 className={styles.paymentTitle}>카드를 넣어주세요.</h2>
 
-        <p className={styles.paymentSubtitle}>기기 하단에 있는 카드 리더기에 신용카드를 넣어주세요.</p>
+      <p className={styles.paymentSubtitle}>기기 하단에 있는 카드 리더기에 신용카드를 넣어주세요.</p>
 
-        <div className={styles.paymentAmount}>결제 금액: {totalPrice.toLocaleString()}원</div>
-
-        <div className={styles.paymentImage}></div>
-
-        <div className={styles.paymentBar}>
-          <div className={styles.paymentBarFill}></div>
-        </div>
-
-        <button className={styles.paymentCancel} onClick={onClose}>
-          취소
-        </button>
+      <div className={styles.amountBox}>
+        <span className={styles.amountLabel}>결제 금액</span>
+        <span className={styles.amountValue}>{totalPrice.toLocaleString()}원</span>
       </div>
-    </div>
+
+      <div className={styles.paymentImage}></div>
+
+      <div className={styles.paymentBar}>
+        <div className={styles.paymentBarFill} style={{ width: `${progress}%` }}></div>
+      </div>
+
+      <button className={styles.paymentCancel} onClick={onBack}>
+        취소
+      </button>
+      {/* 테스트용 다음 모달 이동 버튼 — 개발 중에만 사용 */}
+      <button
+        className={styles.paymentCancel}
+        style={{ marginTop: '40px', background: '#4a90e2', color: '#fff' }}
+        onClick={() => {
+          if (typeof onComplete === 'function') onComplete();
+        }}
+      >
+        테스트용 다음 단계로 이동
+      </button>
+    </Modal>
   );
 }

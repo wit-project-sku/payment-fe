@@ -1,11 +1,12 @@
 .layout {
-  width: 1820px;
-  height: 2250px;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   background-color: #fffbf2;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding-top: 50px;
 }
 
 .content {

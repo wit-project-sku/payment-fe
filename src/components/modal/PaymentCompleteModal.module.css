@@ -1,0 +1,86 @@
+.modal {
+  width: 1300px;
+  height: 1600px;
+  background: #fffbf2;
+  border-radius: 25px;
+  padding: 80px 60px;
+  text-align: center;
+  font-family: 'NotoSans';
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 90px;
+  font-weight: 500;
+  color: #4b3d2a;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 40px;
+  color: #666;
+  margin-bottom: 60px;
+}
+
+/* 전화번호 알림 박스 */
+.noticeBox {
+  width: 1100px;
+  background: #faf5ef;
+  border: 2px solid #8b7355;
+  border-radius: 18px;
+  padding: 35px 40px;
+  font-size: 40px;
+  font-weight: 600;
+  color: #4b3d2a;
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+/* QR 코드 영역 — 비워둠 */
+.qrContainer {
+  width: 450px;
+  height: 450px;
+  background: white;
+  border-radius: 18px;
+  margin-bottom: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 링크 안내 박스 */
+.linkBox {
+  width: 1100px;
+  padding: 40px 40px;
+  background: #faf5ef;
+  border: 2px solid #8b7355;
+  border-radius: 18px;
+  font-size: 38px;
+  text-align: left;
+  color: #4b3d2a;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.autoClose {
+  font-size: 32px;
+  color: #888;
+  margin-bottom: 40px;
+}
+
+/* 확인 버튼 */
+.closeBtn {
+  width: 950px;
+  height: 300px;
+  background: #8b7355;
+  color: white;
+  font-size: 70px;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  text-align: center;
+}

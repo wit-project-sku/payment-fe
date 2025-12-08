@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { lazy, Suspense } from 'react';
 import KioskLayout from '@layouts/KioskLayout';
 import AdminLayout from '@layouts/AdminLayout';
+import MobileLayout from '@layouts/MobileLayout';
 
 const StorePage = lazy(() => import('@pages/store/StorePage'));
 
@@ -9,6 +10,10 @@ const ProductManagePage = lazy(() => import('@pages/admin/ProductManagePage'));
 const PaymentHistoryPage = lazy(() => import('@pages/admin/PaymentHistoryPage'));
 const IssueTrackerPage = lazy(() => import('@pages/admin/IssueTrackerPage'));
 const LoginPage = lazy(() => import('@pages/admin/LoginPage'));
+
+const SearchPage = lazy(() => import('@pages/mobile/SearchPage'));
+const OptionPage = lazy(() => import('@pages/mobile/OptionPage'));
+const AddressPage = lazy(() => import('@pages/mobile/AddressPage'));
 
 const NotFoundPage = lazy(() => import('@pages/NotFound/NotFound'));
 
@@ -41,6 +46,13 @@ export default function AppRouter() {
     { path: '*', element: <NotFoundPage /> },
   ];
 
+  const mobileRoutes = [
+    { path: 'order', element: <OptionPage /> },
+    { path: 'search', element: <SearchPage /> },
+    { path: 'address', element: <AddressPage /> },
+    { path: '*', element: <NotFoundPage /> },
+  ];
+
   return (
     <Router>
       <Suspense fallback={<PageLoader />}>
@@ -54,6 +66,12 @@ export default function AppRouter() {
 
           <Route path='/admin/*' element={<AdminLayout />}>
             {adminRoutes.map(({ path, element }) => (
+              <Route key={path} path={path} element={element} />
+            ))}
+          </Route>
+
+          <Route path='/mobile/*' element={<MobileLayout />}>
+            {mobileRoutes.map(({ path, element }) => (
               <Route key={path} path={path} element={element} />
             ))}
           </Route>

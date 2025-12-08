@@ -1,0 +1,96 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal {
+  width: 900px;
+  height: 600px;
+  background: white;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.icon {
+  width: 250px;
+  height: 250px;
+  max-width: 100%;
+  object-fit: contain;
+  margin-top: 100px;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 25px;
+  font-weight: 400;
+  color: #7d7d7d;
+  margin-bottom: 35px;
+}
+
+.phone {
+  font-size: 60px;
+  font-weight: 700;
+  color: #ca4040;
+  margin-bottom: 30px;
+}
+
+.button {
+  width: 300px;
+  height: 90px;
+  border-radius: 20px;
+  border: 3px solid #e5e5e5;
+  background: #8b7355;
+  font-size: 36px;
+  font-weight: 500;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 60px;
+  box-shadow: 0 0 0 2px #e5e5e5 inset;
+}
+
+.buttonRow {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.cancelButton {
+  width: 300px;
+  height: 90px;
+  border-radius: 20px;
+  border: 3px solid #e5e5e5;
+  background: #ffffff;
+  font-size: 36px;
+  font-weight: 500;
+  color: #8b7355;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px #e5e5e5 inset;
+}

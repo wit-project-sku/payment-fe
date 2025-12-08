@@ -1,0 +1,91 @@
+.container {
+  font-family: 'NotoSans';
+  width: 100%;
+  min-height: 100vh;
+  padding: 32px 20px;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-sizing: border-box;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  opacity: 0.6;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 17px;
+}
+
+.noticeBox {
+  margin-top: 24px;
+  background: #f0f7ff;
+  border-radius: 12px;
+  padding: 20px;
+  font-size: 14px;
+  color: #4a5565;
+  display: flex;
+  align-items: flex-start;
+}
+
+.noticeTitle {
+  font-weight: 700;
+  color: #000000;
+  min-width: 40px;
+}
+
+.noticeText {
+  line-height: 1.5;
+  white-space: normal;
+}
+
+.nextButton {
+  width: 100%;
+  margin-top: 25px;
+  background: #f5f5f5;
+  color: #bfbfbf;
+  font-size: 20px;
+  padding: 15px 0;
+  border-radius: 12px;
+  border: none;
+  cursor: not-allowed;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.active {
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}

@@ -6,42 +6,57 @@
 }
 
 .card {
-  width: 400px;
+  width: 440px;
+  height: 650px;
   display: flex;
   flex-direction: column;
-  margin-top: 60px;
   gap: 10px;
+  margin-top: 40px;
+  padding: 30px;
+  box-sizing: border-box;
+  background: #f7efe1;
+  border-radius: 20px;
+  position: relative;
 }
 
 .thumbnail {
-  width: 400px;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  cursor: pointer;
-  border: 3px solid #d9d9d9;
+  width: 380px;
+  height: 380px;
   box-sizing: border-box;
+  padding: 28px 24px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+  object-fit: contain;
+  cursor: pointer;
 }
 
+/* 상품명 */
 .name {
-  font-size: 35px;
-  line-height: 50px;
-  color: #000000;
+  margin-top: 10px;
+  font-size: 32px;
+  line-height: 40px;
+  color: #5d4e37;
   font-family: 'NotoSans';
   font-weight: 700;
+  word-break: keep-all;
 }
 
 .desc {
-  font-size: 30px;
-  color: #8e8e8e;
+  font-size: 24px;
+  line-height: 32px;
+  color: #aca193;
   font-family: 'NotoSans';
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .price {
-  font-size: 35px;
-  color: #8e8e8e;
+  position: absolute;
+  bottom: 40px;
+  left: 30px;
+  font-size: 40px;
+  line-height: 40px;
+  color: #8b7355;
   font-family: 'NotoSans';
-  font-weight: 600;
+  font-weight: 800;
 }

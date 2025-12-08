@@ -1,0 +1,260 @@
+.pageContainer {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 60px 5px 100px;
+  font-family: 'NotoSans';
+  color: #1a1a1a;
+}
+
+.iconBox {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconBox img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.subTitle {
+  font-size: 18px;
+  text-align: center;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.fieldLabel {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.inputField {
+  width: 90%;
+  height: 60px;
+  border: 2px solid #d1d1d1;
+  border-radius: 14px;
+  padding: 0 18px;
+  font-size: 19px;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 16px;
+  background: #fafafa;
+}
+
+.inputField:focus {
+  border-color: #3a7afe;
+  background: #ffffff;
+}
+
+/* 약관 박스 */
+.agreeBox {
+  border: 2px solid #c9d7ff;
+  background: #f7f9ff;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.agreeTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #1947b3;
+}
+
+.agreeItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.agreeItem input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid #9bb0ff;
+  background: #ffffff;
+  cursor: pointer;
+  position: relative;
+}
+
+.agreeItem input[type='checkbox']::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.agreeItem input[type='checkbox']:checked {
+  background: #3a7afe;
+  border-color: #3a7afe;
+}
+
+.agreeItem input[type='checkbox']:checked::after {
+  content: '✔';
+  position: absolute;
+  top: -2px;
+  left: 4px;
+  font-size: 18px;
+  color: white;
+  font-weight: 700;
+}
+
+.agreeText {
+  flex: 1;
+  font-size: 12px;
+  color: #333;
+}
+
+.viewLink {
+  font-size: 15px;
+  color: #3b71ff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.warningText {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* 버튼 영역 */
+.buttonWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.prevButton,
+.submitButton {
+  flex: 1;
+  height: 60px;
+  border-radius: 14px;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+/* 이전 버튼 */
+.prevButton {
+  background: #f2f2f2;
+  color: #666;
+}
+
+/* 주문 완료 버튼 */
+.submitButton {
+  background: #3a7afe;
+  color: white;
+}
+
+/* 비활성화 */
+.submitButton:disabled {
+  background: #c8d5ff;
+  cursor: not-allowed;
+}
+
+.redText {
+  color: #d14a4a;
+  font-weight: 700;
+}
+
+/* 약관 모달 오버레이 */
+.termsOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 9999;
+}
+
+/* 약관 모달 본문 */
+.termsModal {
+  width: 100%;
+  max-width: 480px;
+  height: 70%;
+  background: #ffffff;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  animation: slideUp 0.25s ease-out;
+}
+
+/* 상단 바 (드래그 표시) */
+.termsBar {
+  width: 100px;
+  height: 6px;
+  background: #1a1a1a;
+  border-radius: 6px;
+  margin: 0 auto 20px;
+}
+
+.termsTitle {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.termsContent {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 30px;
+  white-space: pre-line;
+}
+
+.termsClose {
+  width: 100%;
+  height: 56px;
+  background: #3a7afe;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  text-align: center;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

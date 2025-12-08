@@ -2,6 +2,7 @@ import axios from 'axios';
 
 // 공통 설정 상수
 const PUBLIC_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const LOCAL_API_BASE_URL = import.meta.env.VITE_API_LOCAL_URL;
 const PRIVATE_API_BASE_URL = import.meta.env.VITE_APP_API_URL || PUBLIC_API_BASE_URL;
 const REQUEST_TIMEOUT = 30000;
 const REFRESH_ENDPOINT = '/auth/refresh';
@@ -20,6 +21,9 @@ const createApiInstance = (baseURL, options = {}) =>
 
 /** 토큰이 필요 없는 기본 API 인스턴스 */
 const publicApi = createApiInstance(PUBLIC_API_BASE_URL);
+
+/** 로컬 API 인스턴스 */
+const localApi = createApiInstance(LOCAL_API_BASE_URL);
 
 /** 토큰이 필요한 인증 API 인스턴스 */
 const privateApi = createApiInstance(PRIVATE_API_BASE_URL);
@@ -141,6 +145,13 @@ export const APIService = {
     patch: (url, data = {}, config = {}) => unwrap(publicApi.patch(url, data, config)),
     delete: (url, config = {}) => unwrap(publicApi.delete(url, config)),
   },
+  local: {
+    get: (url, config = {}) => unwrap(localApi.get(url, config)),
+    post: (url, data = {}, config = {}) => unwrap(localApi.post(url, data, config)),
+    put: (url, data = {}, config = {}) => unwrap(localApi.put(url, data, config)),
+    patch: (url, data = {}, config = {}) => unwrap(localApi.patch(url, data, config)),
+    delete: (url, config = {}) => unwrap(localApi.delete(url, config)),
+  },
   private: {
     get: (url, config = {}) => unwrap(privateApi.get(url, config)),
     post: (url, data = {}, config = {}) => unwrap(privateApi.post(url, data, config)),
@@ -151,4 +162,4 @@ export const APIService = {
 };
 
 // 인스턴스를 직접 써야 할 경우 대비 export
-export default { public: publicApi, private: privateApi };
+export default { public: publicApi, local: localApi, private: privateApi };

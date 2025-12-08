@@ -26,41 +26,44 @@
 
 .modalBox {
   width: 1300px;
-  min-height: 1600px;
+  height: 1800px;
   background: #fffbf2;
-  border-radius: 24px;
-  padding: 50px 70px;
+  border-radius: 40px;
+  padding: 50px 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
   position: relative;
+  justify-content: space-between;
 }
 
 .modalTitle {
-  font-size: 80px;
+  font-size: 50px;
   font-weight: 700;
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 15px;
   color: #000000;
 }
 
 .modalSubtitle {
-  font-size: 60px;
-  color: #4e4e4e;
+  font-size: 40px;
+  color: #5e5e5e;
   font-weight: 600;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   text-align: center;
 }
 
 .imageWrapper {
-  width: 800px;
-  height: 800px;
+  width: 900px;
+  height: 900px;
   background: white;
   border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 40px;
+  position: relative;
 }
 
 .mainImage {
@@ -70,20 +73,12 @@
 }
 
 .description {
-  width: 850px;
+  width: 900px;
+  height: 300px;
   font-size: 35px;
   font-weight: 600;
   color: #444;
   text-align: left;
-  margin-bottom: 0;
-  flex-grow: 1;
-}
-
-.price {
-  font-size: 70px;
-  font-weight: 700;
-  color: #000000;
-  margin-bottom: 10px;
 }
 
 .buttonRow {
@@ -91,26 +86,13 @@
   justify-content: center;
   gap: 40px;
   width: 100%;
-  margin-top: 0;
-}
-
-.cancelBtn {
-  width: 350px;
-  height: 120px;
-  background: #666;
-  color: white;
-  font-size: 40px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: 700;
-  text-align: center;
+  margin-top: auto;
 }
 
 .addBtn {
-  width: 350px;
-  height: 120px;
-  background: #1a7f31;
+  width: 900px;
+  height: 130px;
+  background: #8b7355;
   color: white;
   font-size: 40px;
   border: none;
@@ -120,12 +102,8 @@
   text-align: center;
 }
 
-.cancelBtn:hover {
-  background: #555;
-}
-
 .addBtn:hover {
-  background: #155f26;
+  background: #d8d1c5;
 }
 
 .carouselContainer {
@@ -157,4 +135,112 @@
 
 .carouselNext {
   right: -120px;
+}
+
+.subDescriptionTitle {
+  width: 900px;
+  font-size: 38px;
+  font-weight: 700;
+  color: #6b5b4a;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.carouselDots {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 18px;
+  height: 18px;
+  background: #d8d1c5;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.activeDot {
+  background: #6b5b4a;
+}
+
+.priceAndQuantity {
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.priceRow {
+  width: 900px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 2px solid #c5b7a3;
+}
+
+.priceLabel {
+  font-size: 36px;
+  font-weight: 600;
+  color: #000;
+}
+
+.priceValue {
+  font-size: 36px;
+  font-weight: 700;
+  color: #000;
+}
+
+.price {
+  font-size: 44px;
+  font-weight: 800;
+  color: #000;
+  text-align: left;
+}
+
+.quantityRow {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.quantityLabel {
+  font-size: 32px;
+  font-weight: 600;
+  color: #6b5b4a;
+}
+
+.quantityControl {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.qtyBtn {
+  width: 50px;
+  height: 50px;
+  background: #eee4d8;
+  border: none;
+  border-radius: 8px;
+  font-size: 40px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.qtyNumber {
+  font-size: 36px;
+  font-weight: 700;
+  color: #6b5b4a;
 }

@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import styles from './KioskLayout.module.css';
-import GoodsHeader from '@commons/GoodsHeader';
+import StoreSubHeader from '@commons/StoreSubHeader';
 import Cart from '@components/cart/Cart';
 import { useState } from 'react';
 import useCart from '@hooks/useCart';
@@ -12,7 +12,7 @@ export default function KioskLayout() {
 
   return (
     <div className={styles.layout}>
-      <GoodsHeader
+      <StoreSubHeader
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         categories={categories}

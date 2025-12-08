@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react';
 import { getProductDetail } from '@api/productApi';
 import styles from './ProductDetailModal.module.css';
+import WarningModal from '@modals/WarningModal';
 
 export default function ProductDetailModal({ item, onClose, onAdd }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [detail, setDetail] = useState(null);
 
+  const [showWarning, setShowWarning] = useState(false);
+
   useEffect(() => {
     if (!item?.id) return;
     getProductDetail(item.id)
-      .then((res) => setDetail(res.data))
+      .then((res) => setDetail({ ...res.data, count: 1 }))
       .catch((err) => console.error(err));
   }, [item]);
 
@@ -26,10 +29,11 @@ export default function ProductDetailModal({ item, onClose, onAdd }) {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalBox}>
-        <h2 className={styles.modalTitle}>상품 상세보기</h2>
-
-        <div className={styles.modalSubtitle}>
-          {detail?.categoryName} &gt; {detail?.name}
+        <div className={styles.headerSection}>
+          <h2 className={styles.modalTitle}>상품 상세보기</h2>
+          <div className={styles.modalSubtitle}>
+            {detail?.categoryName} &gt; {detail?.name}
+          </div>
         </div>
 
         <div className={styles.imageWrapper}>
@@ -56,27 +60,68 @@ export default function ProductDetailModal({ item, onClose, onAdd }) {
               ›
             </button>
           </div>
+          <div className={styles.carouselDots}>
+            {images.map((_, idx) => (
+              <span key={idx} className={`${styles.dot} ${currentIndex === idx ? styles.activeDot : ''}`}></span>
+            ))}
+          </div>
         </div>
 
+        <div className={styles.subDescriptionTitle}>{detail?.subTitle}</div>
         <p className={styles.description}>{detail?.description}</p>
 
-        <div className={styles.price}>{detail?.price?.toLocaleString()}원</div>
+        <div className={styles.priceQuantityBox}>
+          <div className={styles.priceRow}>
+            <span className={styles.priceLabel}>가격</span>
+            <span className={styles.priceValue}>{detail?.price?.toLocaleString()}원</span>
+          </div>
+
+          <div className={styles.quantityRow}>
+            <span className={styles.quantityLabel}>수량</span>
+
+            <div className={styles.quantityControl}>
+              <button
+                className={styles.qtyBtn}
+                onClick={() => setDetail((prev) => ({ ...prev, count: Math.max((prev?.count || 1) - 1, 1) }))}
+              >
+                –
+              </button>
+
+              <span className={styles.qtyNumber}>{detail?.count || 1}</span>
+
+              <button
+                className={styles.qtyBtn}
+                onClick={() => setDetail((prev) => ({ ...prev, count: (prev?.count || 1) + 1 }))}
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
 
         <div className={styles.buttonRow}>
-          <button className={styles.cancelBtn} onClick={onClose}>
-            닫기
-          </button>
-
           <button
             className={styles.addBtn}
             onClick={() => {
-              onAdd(item);
-              onClose();
+              setShowWarning(true);
             }}
           >
             담기
           </button>
         </div>
+        {showWarning && (
+          <WarningModal
+            title='본 제품은 개인화된 맞춤 제작 상품으로'
+            subtitle='제작 후 반품이 불가합니다.'
+            description='단, 불량품의 경우 환불 또는 교환이 가능합니다.'
+            onConfirm={() => {
+              onAdd({ ...detail, quantity: detail?.count || 1 });
+              setShowWarning(false);
+              onClose();
+            }}
+            onCancel={() => setShowWarning(false)}
+          />
+        )}
       </div>
     </div>
   );

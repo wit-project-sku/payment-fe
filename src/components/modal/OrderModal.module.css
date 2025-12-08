@@ -1,14 +1,13 @@
 .modalOverlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 325px;
+  align-items: center;
   z-index: 9999;
   font-family: 'NotoSans';
 }
@@ -16,9 +15,9 @@
 .modalBox {
   width: 1300px;
   height: 1600px;
-  background: #fffbf2;
+  background: #ffffff;
   border-radius: 25px;
-  padding: 60px;
+  padding: 80px 60px 60px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -27,34 +26,45 @@
   font-family: 'NotoSans';
 }
 
+/* 제목 */
 .modalTitle {
   font-family: 'NotoSans';
   text-align: center;
-  margin-bottom: 50px;
-  font-size: 80px;
-  font-weight: 700;
+  margin-bottom: 60px;
+  font-size: 96px;
+  font-weight: 500;
+  color: #4b3d2a;
 }
 
+/* 주문 목록 영역 */
 .modalItems {
   width: 1100px;
-  height: 1200px;
-  background: #ffffff;
-  padding: 20px 25px;
-  flex-grow: 1;
+  height: 1000px;
+  background: transparent;
+  padding: 0;
+  flex-grow: 0;
   overflow-y: auto;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   box-sizing: border-box;
   font-family: 'NotoSans';
   font-weight: 500;
 }
 
+/* 각 주문 카드 */
 .modalRow {
   display: flex;
   align-items: center;
-  padding: 40px 25px;
-  border-bottom: 2px solid #e0e0e0;
-  font-size: 40px;
+  padding: 32px 40px;
+  margin-bottom: 18px;
+  background: #faf5ef;
+  border-radius: 20px;
+  font-size: 38px;
   font-family: 'NotoSans';
+  border: 1px solid #f0e0cc;
+}
+
+.modalRow:last-child {
+  margin-bottom: 0;
 }
 
 .modalRow span:first-child {
@@ -71,61 +81,96 @@
   text-align: right;
 }
 
+.summaryTopLine {
+  width: 1100px;
+  border-top: 2px solid #e0d6c8;
+}
+
 .modalSummary {
   width: 1100px;
-  background: #ffffff;
-  padding: 40px 0;
-  margin: 0 auto 40px auto;
-  text-align: center;
-  font-weight: 700;
-  font-size: 55px;
-  color: #000000;
+  background: #faf5ef;
+  border-radius: 24px;
+  border: 1px solid #e7d7c4;
+  padding: 20px 30px;
+  margin: 40px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   font-family: 'NotoSans';
 }
 
-.modalSummary span {
-  color: #c00000;
-  font-weight: 700;
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 45px;
+  color: #6b5b4a;
+  margin-bottom: 8px;
 }
 
+.summaryRow span:last-child {
+  font-weight: 500;
+}
+
+.summaryDivider {
+  border-top: 2px solid #e0d6c8;
+  margin: 18px 0 22px;
+}
+
+.summaryTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 70px;
+  font-weight: 600;
+  color: #4b3d2a;
+}
+
+.summaryTotal span:last-child {
+  font-size: 70px;
+  font-weight: 600;
+}
+
+/* 버튼 영역 */
 .modalButtons {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 80px;
+  gap: 60px;
   width: 100%;
-  margin-top: 40px;
+  margin-top: 0;
   font-family: 'NotoSans';
 }
 
+/* 돌아가기 버튼 */
 .modalBack {
-  width: 400px;
+  width: 520px;
   height: 120px;
-  border-radius: 15px;
-  background: #555555;
-  color: white;
-  font-size: 40px;
+  font-size: 48px;
+  border-radius: 20px;
   border: none;
   cursor: pointer;
-  text-align: center;
   font-weight: 700;
-  font-family: 'NotoSans';
+  text-align: center;
+  background: #5d4e37;
+  color: #ffffff;
 }
 
+/* 결제하기 버튼 */
 .modalPay {
-  width: 400px;
+  width: 520px;
   height: 120px;
-  border-radius: 15px;
-  background: #1a7f31;
-  color: white;
-  font-size: 40px;
+  font-size: 48px;
+  border-radius: 20px;
   border: none;
   cursor: pointer;
-  text-align: center;
   font-weight: 700;
-  font-family: 'NotoSans';
+  text-align: center;
+  background: #6b8e6f;
+  color: white;
 }
 
+/* 스크롤바 스타일 */
 .modalItems::-webkit-scrollbar {
   width: 15px;
 }

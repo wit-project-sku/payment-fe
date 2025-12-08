@@ -1,0 +1,83 @@
+.container {
+  padding-top: 40px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #8e8e8e;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.card {
+  width: 100%;
+  background: #fafafa;
+  padding: 16px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 0 1px #e8e8e8 inset;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.thumbnail {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.info {
+  flex: 1;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.qty {
+  font-size: 14px;
+  color: #6e6e6e;
+}
+
+.select {
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #dcdcdc;
+  font-size: 15px;
+  background: #fff;
+  box-sizing: border-box; /* 추가 */
+}
+
+.nextButton {
+  width: 100%;
+  margin-top: 40px;
+  padding: 16px 0;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 600;
+  background: #e6e6e6;
+  color: #bcbcbc;
+  border: none;
+  text-align: center;
+}
+
+.nextButton.active {
+  background: #3e7bff;
+  color: #ffffff;
+}
