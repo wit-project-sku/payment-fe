@@ -43,7 +43,7 @@ export default function MobileMainPage() {
             <img src={paperImg} alt='paper' className={styles.buttonIcon} />
           </div>
           <div className={styles.buttonTextArea}>
-            <div className={styles.buttonTitle}>주문 조회</div>
+            <div className={styles.buttonTitle}>주문 내역 조회</div>
             <div className={styles.buttonDesc}>주문 내역을 확인해주세요.</div>
           </div>
         </button>

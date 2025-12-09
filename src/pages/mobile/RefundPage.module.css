@@ -9,7 +9,7 @@
 .pageContainer {
   width: 100%;
   max-width: 420px;
-  padding: 50px 4px 50px;
+  padding: 50px 4px 100px;
   box-sizing: border-box;
   font-family: 'NotoSans';
   position: relative;

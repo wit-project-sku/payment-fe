@@ -60,7 +60,7 @@ export default function OptionPage() {
 
   const handleNext = () => {
     if (!isNextEnabled) return;
-    navigate('/mobile/address');
+    navigate('/mobile/address', { state: { fromOption: true } });
   };
 
   return (

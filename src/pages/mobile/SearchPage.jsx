@@ -95,7 +95,7 @@ export default function SearchPage() {
 
             if (Array.isArray(data) && data.length > 0) {
               const target = mode === 'order' ? '/mobile/option' : '/mobile/delivery';
-              navigate(target, { state: { orders: data } });
+              navigate(target, { state: { orders: data, fromOption: true } });
             }
           } catch (e) {
             console.error('조회 실패:', e);

@@ -85,11 +85,7 @@ export default function AppRouter() {
     { path: '', element: <MobileMainPage /> },
     {
       path: 'option',
-      element: (
-        <AddressGuard>
-          <OptionPage />
-        </AddressGuard>
-      ),
+      element: <OptionPage />,
     },
     { path: 'search', element: <SearchPage /> },
     {

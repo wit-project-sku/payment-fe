@@ -17,7 +17,6 @@ export default function RefundPage() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // 전화번호 숫자만
     if (name === 'phone') {
       const onlyNumber = value.replace(/[^0-9]/g, '');
       setForm((prev) => ({ ...prev, [name]: onlyNumber }));
@@ -44,7 +43,6 @@ export default function RefundPage() {
           <p className={styles.subtitle}>불량품에 대한 교환 및 환불을 신청해주세요.</p>
         </header>
 
-        {/* 상단 중요 안내 박스 */}
         <section className={styles.importantBox}>
           <div className={styles.importantTitle}>
             <img src={noticeImg} alt='notice' className={styles.noticeIcon} />
@@ -65,7 +63,6 @@ export default function RefundPage() {
         </button>
 
         <form className={styles.form} onSubmit={handleSubmit}>
-          {/* 주문번호 */}
           <div className={styles.fieldGroup}>
             <label className={styles.fieldLabel}>
               주문번호 <span className={styles.required}>*</span>
@@ -79,7 +76,6 @@ export default function RefundPage() {
             />
           </div>
 
-          {/* 연락처 */}
           <div className={styles.fieldGroup}>
             <label className={styles.fieldLabel}>
               연락 가능한 전화번호 <span className={styles.required}>*</span>
@@ -94,7 +90,6 @@ export default function RefundPage() {
             />
           </div>
 
-          {/* 사유 선택 */}
           <div className={styles.fieldGroup}>
             <label className={styles.fieldLabel}>
               불량 사유 선택 <span className={styles.required}>*</span>
@@ -108,7 +103,6 @@ export default function RefundPage() {
             </select>
           </div>
 
-          {/* 상세 설명 */}
           <div className={styles.fieldGroup}>
             <label className={styles.fieldLabel}>
               상세 설명 <span className={styles.required}>*</span>
@@ -122,7 +116,6 @@ export default function RefundPage() {
             />
           </div>
 
-          {/* 사진 첨부 박스 (UI용) */}
           <div className={styles.fieldGroup}>
             <label className={styles.fieldLabel}>
               불량 상태 사진 첨부 (2~3장 권장) <span className={styles.required}>*</span>
@@ -163,11 +156,10 @@ export default function RefundPage() {
           </button>
         </form>
 
-        {/* 하단 문의 */}
         <footer className={styles.footer}>
           <p className={styles.footerQuestion}>문의사항이 있으신가요?</p>
-          <p className={styles.footerLine}>고객센터: 02-1234-5678 (평일 09:00-18:00)</p>
-          <p className={styles.footerLine}>이메일: support@witglobal.com</p>
+          <p className={styles.footerLine}>고객센터: 010-8792-2028 (평일 09:00-18:00)</p>
+          <p className={styles.footerLine}>이메일: unijun0109@gmail.com</p>
           <p className={styles.footerLine}>카카오톡: @WIT상담</p>
         </footer>
       </div>

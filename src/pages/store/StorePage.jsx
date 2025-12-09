@@ -20,7 +20,7 @@ export default function StorePage() {
   useEffect(() => {
     const imageUrl = searchParams.get('imageUrl');
     if (imageUrl) {
-      localStorage.setItem('product-image-url', imageUrl);
+      localStorage.setItem('image-url', imageUrl);
       navigate('/kiosk/store', { replace: true });
     }
   }, [searchParams, navigate]);
