@@ -114,6 +114,7 @@ export default function AppRouter() {
         <Routes>
           <Route path='/' element={<Navigate to='/mobile' replace />} />
           <Route path='/kiosk/*' element={<KioskLayout />}>
+            <Route index element={<Navigate to='/kiosk/store' replace />} />
             {kioskRoutes.map(({ path, element }) => (
               <Route key={path} path={path} element={element} />
             ))}
