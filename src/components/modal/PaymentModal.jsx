@@ -104,16 +104,6 @@ export default function PaymentModal({ items, onBack, onTimeout, onComplete, onF
       <button className={styles.paymentCancel} onClick={onBack}>
         취소
       </button>
-      {/* 테스트용 다음 모달 이동 버튼 — 개발 중에만 사용 */}
-      <button
-        className={styles.paymentCancel}
-        style={{ marginTop: '40px', background: '#4a90e2', color: '#fff' }}
-        onClick={() => {
-          if (typeof onComplete === 'function') onComplete();
-        }}
-      >
-        테스트용 다음 단계로 이동
-      </button>
     </Modal>
   );
 }
