@@ -112,7 +112,7 @@ export default function AppRouter() {
     <Router>
       <Suspense fallback={<PageLoader />}>
         <Routes>
-          <Route path='/' element={<Navigate to='/mobile' replace />} />
+          <Route path='/' element={<Navigate to='/kiosk/store' replace />} />
           <Route path='/kiosk/*' element={<KioskLayout />}>
             <Route index element={<Navigate to='/kiosk/store' replace />} />
             {kioskRoutes.map(({ path, element }) => (
