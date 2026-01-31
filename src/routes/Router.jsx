@@ -19,8 +19,8 @@ const AddressPage = lazy(() => import('@pages/mobile/AddressPage'));
 const DeliveryPage = lazy(() => import('@pages/mobile/DeliveryPage'));
 const RefundPage = lazy(() => import('@pages/mobile/RefundPage'));
 
-const NotFoundPage = lazy(() => import('@pages/notfound/NotFound'));
-const ImageNotFoundPage = lazy(() => import('@pages/notfound/ImageNotFound'));
+const NotFoundPage = lazy(() => import('@pages/NotFound/NotFound'));
+const ImageNotFoundPage = lazy(() => import('@pages/NotFound/ImageNotFound'));
 
 const PageLoader = () => (
   <div
