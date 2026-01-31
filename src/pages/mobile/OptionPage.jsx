@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './OptionPage.module.css';
-import leftArrow from '@assets/images/leftArrow.png';
+import left from '@assets/images/left.png';
 
 export default function OptionPage() {
   const [selectedOption, setSelectedOption] = useState('');
@@ -9,64 +9,92 @@ export default function OptionPage() {
   const location = useLocation();
   const orders = location.state?.orders || [];
 
-  const items = orders.map((order) => ({
-    id: order.paymentId,
-    name: order.items[0]?.productName || '상품명 없음',
-    qty: 1,
-    image: order.items[0]?.imageUrl,
-    options: [
-      'iPhone 17',
-      'iPhone 17 Air',
-      'iPhone 17 Pro',
-      'iPhone 17 Pro Max',
-      'iPhone 16',
-      'iPhone 16 Plus',
-      'iPhone 16 Pro',
-      'iPhone 16 Pro Max',
-      'iPhone 15',
-      'iPhone 15 Plus',
-      'iPhone 15 Pro',
-      'iPhone 15 Pro Max',
-      'iPhone 14',
-      'iPhone 14 Plus',
-      'iPhone 14 Pro',
-      'iPhone 14 Pro Max',
-      'iPhone 13',
-      'iPhone 13 Pro',
-      'iPhone 13 Pro Max',
-      'iPhone 12',
-      'iPhone 12 Pro',
-      'iPhone 12 Pro Max',
-      '[SAMSUNG] S25',
-      '[SAMSUNG] S25+',
-      '[SAMSUNG] S25 ULTRA',
-      '[SAMSUNG] S24',
-      '[SAMSUNG] S24+',
-      '[SAMSUNG] S24+ ULTRA',
-      '[SAMSUNG] S23',
-      '[SAMSUNG] S23+',
-      '[SAMSUNG] S23+ ULTRA',
-      '[SAMSUNG] Z FLIP 7',
-      '[SAMSUNG] Z FLIP 6',
-      '[SAMSUNG] Z FLIP 5',
-      '[SAMSUNG] Z FLIP 4',
-      '[SAMSUNG] Z FLIP 3',
-    ],
-  }));
+  const items = orders.flatMap((order) =>
+    order.productListResponses.flatMap((product, index) => {
+      const baseItem = {
+        id: `${order.paymentId}-${product.productId}-${index}`,
+        name: product.productName || '상품명 없음',
+        image: product.productImageUrl || '',
+        category: product.category,
+        options:
+          product.category === '핸드폰'
+            ? [
+                'iPhone 17',
+                'iPhone 17 Air',
+                'iPhone 17 Pro',
+                'iPhone 17 Pro Max',
+                'iPhone 16',
+                'iPhone 16 Plus',
+                'iPhone 16 Pro',
+                'iPhone 16 Pro Max',
+                'iPhone 15',
+                'iPhone 15 Plus',
+                'iPhone 15 Pro',
+                'iPhone 15 Pro Max',
+                'iPhone 14',
+                'iPhone 14 Plus',
+                'iPhone 14 Pro',
+                'iPhone 14 Pro Max',
+                'iPhone 13',
+                'iPhone 13 Pro',
+                'iPhone 13 Pro Max',
+                'iPhone 12',
+                'iPhone 12 Pro',
+                'iPhone 12 Pro Max',
+                '[SAMSUNG] S25',
+                '[SAMSUNG] S25+',
+                '[SAMSUNG] S25 ULTRA',
+                '[SAMSUNG] S24',
+                '[SAMSUNG] S24+',
+                '[SAMSUNG] S24+ ULTRA',
+                '[SAMSUNG] S23',
+                '[SAMSUNG] S23+',
+                '[SAMSUNG] S23+ ULTRA',
+                '[SAMSUNG] Z FLIP 7',
+                '[SAMSUNG] Z FLIP 6',
+                '[SAMSUNG] Z FLIP 5',
+                '[SAMSUNG] Z FLIP 4',
+                '[SAMSUNG] Z FLIP 3',
+              ]
+            : [],
+      };
 
-  const requiresOption = items.some((item) => item.name?.includes('케이스'));
+      if (product.category === '핸드폰' && product.productQuantity > 1) {
+        return Array.from({ length: product.productQuantity }, (_, i) => ({
+          ...baseItem,
+          id: `${baseItem.id}-${i}`,
+          qty: 1,
+        }));
+      }
+
+      return [
+        {
+          ...baseItem,
+          qty: product.productQuantity,
+        },
+      ];
+    }),
+  );
+
+  const requiresOption = items.some((item) => item.category === '핸드폰');
 
   const isNextEnabled = requiresOption ? Boolean(selectedOption) : true;
 
   const handleNext = () => {
     if (!isNextEnabled) return;
-    navigate('/mobile/address', { state: { fromOption: true } });
+    navigate('/mobile/address', {
+      state: {
+        ...(location.state ?? {}),
+        fromOption: true,
+        selectedOption,
+      },
+    });
   };
 
   return (
     <div className={styles.container}>
-      <img src={leftArrow} alt='back' className={styles.backButton} onClick={() => navigate(-1)} />
-      <h1 className={styles.title}>주문 내역</h1>
+      <img src={left} alt='back' className={styles.backButton} onClick={() => navigate(-1)} />
+      <h1 className={styles.title}>주문 내역 확인</h1>
       <p className={styles.subtitle}>아래의 주문 내역을 확인해주세요</p>
 
       {items.map((item) => (
@@ -79,7 +107,7 @@ export default function OptionPage() {
             </div>
           </div>
 
-          {item.name?.includes('케이스') && item.options?.length > 0 && (
+          {item.category === '핸드폰' && item.options?.length > 0 && (
             <select
               className={styles.select}
               value={selectedOption}

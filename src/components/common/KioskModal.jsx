@@ -1,4 +1,4 @@
-import styles from './Modal.module.css';
+import styles from './KioskModal.module.css';
 
 export default function Modal({ children, onClose }) {
   return (

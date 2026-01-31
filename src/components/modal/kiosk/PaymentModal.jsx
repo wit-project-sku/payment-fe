@@ -1,7 +1,7 @@
-import Modal from '@commons/Modal';
+import Modal from '@commons/KioskModal';
 import styles from './PaymentModal.module.css';
 import { useEffect, useState, useRef } from 'react';
-import { approvePayment } from '@api/payment';
+import { approvePayment } from '@api/paymentApi';
 
 export default function PaymentModal({ items, onBack, onTimeout, onComplete, onFail }) {
   const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0) + 3000;
@@ -38,7 +38,6 @@ export default function PaymentModal({ items, onBack, onTimeout, onComplete, onF
       })),
       totalAmount: totalPrice,
       phoneNumber,
-      inst: '00',
       imageUrl,
       delivery: true,
     };

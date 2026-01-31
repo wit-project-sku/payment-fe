@@ -1,6 +1,6 @@
 import styles from './PaymentCompleteModal.module.css';
-import { useState, useEffect } from 'react';
-import Modal from '@commons/Modal';
+import { useState, useEffect, useRef } from 'react';
+import Modal from '@commons/KioskModal';
 import QRCode from 'react-qr-code';
 import { useUserStore } from '@hooks/useUserStore';
 
@@ -8,20 +8,28 @@ export default function PaymentCompleteModal({ onClose }) {
   const [countdown, setCountdown] = useState(60);
   const phone = useUserStore((state) => state.phone);
 
+  const onCloseRef = useRef(onClose);
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          onClose();
-          return 0;
-        }
+        if (prev <= 1) return 0;
         return prev - 1;
       });
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [onClose]);
+  }, []);
+
+  useEffect(() => {
+    if (countdown === 0) {
+      onCloseRef.current?.();
+    }
+  }, [countdown]);
 
   return (
     <Modal onClose={onClose}>
@@ -33,7 +41,7 @@ export default function PaymentCompleteModal({ onClose }) {
       </div>
 
       <div className={styles.qrContainer}>
-        <QRCode value='https://unijuni.store/mobile' size={500} />
+        <QRCode value='https://witteria.com/mobile' size={500} />
       </div>
 
       <div className={styles.linkBox}>

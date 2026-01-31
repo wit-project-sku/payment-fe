@@ -1,4 +1,4 @@
-import Modal from '@commons/Modal';
+import Modal from '@commons/KioskModal';
 import styles from './PreOrderNoticeModal.module.css';
 import warnImg from '@assets/images/warn.png';
 import phoneImg from '@assets/images/phone.png';

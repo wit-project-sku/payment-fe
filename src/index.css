@@ -1,6 +1,8 @@
 @font-face {
   font-family: 'NotoSans';
-  src: local('NotoSans'), url('../assets/font/NotoSans-VariableFont_wdth,wght.ttf') format('ttf');
+  src:
+    local('NotoSans'),
+    url('../assets/font/NotoSans-VariableFont_wdth,wght.ttf') format('ttf');
 }
 
 html,
@@ -40,7 +42,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   margin: 0;
-  background-color: #fffbf2;
+  background-color: #ffffff;
   color: #1c1b1a;
 }
 
@@ -105,7 +107,9 @@ h6 {
   white-space: nowrap;
   opacity: 0;
   transform: scale(1.5);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
 }
 
 .custom-bubble.show {
