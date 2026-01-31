@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import styles from './deliveryManageModal.module.css';
+import styles from './DeliveryManageModal.module.css';
 
 import { fetchDeliveryByIdAdmin, updateDeliveryByAdmin } from '@api/deliveryApi';
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import styles from './productManageModal.module.css';
+import styles from './ProductManageModal.module.css';
 import AdminModal from '../../common/AdminModal';
 import { getCategories } from '@api/categoryApi';
 import { getKiosks } from '@api/kioskApi';
@@ -71,7 +71,6 @@ export default function ProductManageModal({ onClose, mode = 'create', initialPr
     };
 
     fetchDetail();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isEdit, initialProduct?.id]);
 
   useEffect(() => {

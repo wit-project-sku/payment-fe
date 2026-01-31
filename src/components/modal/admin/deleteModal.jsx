@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styles from './deleteModal.module.css';
+import styles from './DeleteModal.module.css';
 import warnIcon from '@assets/images/warn.png';
 
 export default function DeleteModal({

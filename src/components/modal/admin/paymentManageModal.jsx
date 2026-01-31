@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styles from './paymentManageModal.module.css';
+import styles from './PaymentManageModal.module.css';
 
 export default function PaymentManageModal({ open = false, payment = null, onClose }) {
   useEffect(() => {
