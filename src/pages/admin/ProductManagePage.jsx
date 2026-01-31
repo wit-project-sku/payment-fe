@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import styles from './ProductManagePage.module.css';
-import ProductManageModal from '@modals/admin/ProductManageModal';
+import ProductManageModal from '@components/modal/admin/ProductManageModal';
 import DeleteModal from '@components/modal/admin/DeleteModal';
 import updateIcon from '@assets/images/update.png';
 import deleteIcon from '@assets/images/delete.png';
