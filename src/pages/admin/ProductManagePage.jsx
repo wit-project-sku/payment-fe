@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import styles from './ProductManagePage.module.css';
 import ProductManageModal from '@modals/admin/ProductManageModal';
-import DeleteModal from '../../components/modal/admin/deleteModal';
+import DeleteModal from '@components/modal/admin/DeleteModal';
 import updateIcon from '@assets/images/update.png';
 import deleteIcon from '@assets/images/delete.png';
 import searchIcon from '@assets/images/search.png';

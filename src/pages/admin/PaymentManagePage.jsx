@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import PaymentManageModal from '../../components/modal/admin/paymentManageModal';
+import PaymentManageModal from '@components/modal/admin/PaymentManageModal';
 import styles from './PaymentManagePage.module.css';
 import searchIcon from '@assets/images/search.png';
 

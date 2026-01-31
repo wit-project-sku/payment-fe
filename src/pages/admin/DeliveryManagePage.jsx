@@ -4,7 +4,7 @@ import searchIcon from '@assets/images/search.png';
 import clipboardIcon from '@assets/images/clipboard.png';
 import updateIcon from '@assets/images/update.png';
 
-import DeliveryManageModal from '@modals/admin/deliveryManageModal';
+import DeliveryManageModal from '@modals/admin/DeliveryManageModal';
 
 import { fetchAllDeliveriesAdmin } from '@api/deliveryApi';
 
