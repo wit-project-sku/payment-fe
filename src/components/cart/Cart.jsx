@@ -1,13 +1,13 @@
 import CartItem from './CartItem';
 import styles from './Cart.module.css';
 import { useState } from 'react';
-import OrderModal from '@modals/OrderModal';
-import PaymentModal from '@modals/PaymentModal';
-import PreOrderNoticeModal from '@modals/PreOrderNoticeModal';
-import PhoneInputModal from '@modals/PhoneInputModal';
-import ReturnWarningModal from '@modals/WarningModal';
-import PaymentCompleteModal from '@modals/PaymentCompleteModal';
-import FailModal from '@modals/FailModal';
+import OrderModal from '@modals/kiosk/OrderModal';
+import PaymentModal from '@modals/kiosk/PaymentModal';
+import PreOrderNoticeModal from '@modals/kiosk/PreOrderNoticeModal';
+import PhoneInputModal from '@modals/kiosk/PhoneInputModal';
+import ReturnWarningModal from '@modals/kiosk/WarningModal';
+import PaymentCompleteModal from '@modals/kiosk/PaymentCompleteModal';
+import FailModal from '@modals/kiosk/FailModal';
 
 export default function Cart({ items, onRemove, onIncrease, onDecrease }) {
   const [showNotice, setShowNotice] = useState(false);

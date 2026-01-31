@@ -1,4 +1,4 @@
-import Modal from '@commons/Modal';
+import Modal from '@commons/KioskModal';
 import styles from './FailModal.module.css';
 import clockImg from '@assets/images/clock.png';
 import warnImg from '@assets/images/warn.png';

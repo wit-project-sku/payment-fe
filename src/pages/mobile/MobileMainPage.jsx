@@ -34,7 +34,7 @@ export default function MobileMainPage() {
           </div>
           <div className={styles.buttonTextArea}>
             <div className={styles.buttonTitle}>주문 정보 입력</div>
-            <div className={styles.buttonDesc}>배송 정보를 입력해주세요.</div>
+            <div className={styles.buttonDesc}>배송 정보를 입력해주세요</div>
           </div>
         </button>
 
@@ -44,7 +44,7 @@ export default function MobileMainPage() {
           </div>
           <div className={styles.buttonTextArea}>
             <div className={styles.buttonTitle}>주문 내역 조회</div>
-            <div className={styles.buttonDesc}>주문 내역을 확인해주세요.</div>
+            <div className={styles.buttonDesc}>주문 내역을 확인해주세요</div>
           </div>
         </button>
 
@@ -64,7 +64,7 @@ export default function MobileMainPage() {
             <span className={styles.noticeTitle}>안내</span>
           </div>
           <p className={styles.noticeText}>
-            본 제품은 개인화 맞춤 제작 상품으로 제작 완료 후 <b>단순 변심에 의한 반품은 불가능합니다.</b> 불량품의
+            본 제품은 개인화 맞춤 제작 상품으로 제작 완료 후 <b>단순 변심에 의한 반품은 불가능</b>합니다. 불량품의
             경우에만 교환/환불이 가능합니다.
           </p>
         </section>

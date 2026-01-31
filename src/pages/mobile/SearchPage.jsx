@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import { fetchOrderByPhone } from '@api/search';
+import { fetchOrderByPhone } from '@api/paymentApi';
+import { fetchDeliveryByPhone } from '@api/deliveryApi';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './SearchPage.module.css';
-import leftArrow from '@assets/images/leftArrow.png';
+import left from '@assets/images/left.png';
 import telImg from '@assets/images/tel.png';
+import NotFoundModal from '@modals/mobile/NotFoundModal';
 
 export default function SearchPage() {
   const [phone, setPhone] = useState('');
   const [orders, setOrders] = useState([]);
+  const [showNotFound, setShowNotFound] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,12 +30,12 @@ export default function SearchPage() {
 
   return (
     <div className={styles.container}>
-      <img src={leftArrow} alt='back' className={styles.backButton} onClick={() => navigate(-1)} />
-      <h1 className={styles.title}>{mode === 'order' ? '주문 정보 조회' : '주문 내역 조회'}</h1>
+      <img src={left} alt='back' className={styles.backButton} onClick={() => navigate(-1)} />
+      <h1 className={styles.title}>{mode === 'order' ? '주문 정보 입력' : '배송 내역 조회'}</h1>
       <p className={styles.subtitle}>
         {mode === 'order'
-          ? '결제 시 입력한 전화번호를 입력하시면 주문 정보를 확인할 수 있습니다.'
-          : '결제 시 입력한 전화번호를 입력하시면 주문 내역을 확인할 수 있습니다.'}
+          ? '결제 시 입력한 전화번호를 입력해주세요'
+          : '결제 시 입력한 전화번호를 입력하시면 배송 내역을 확인할 수 있습니다.'}
       </p>
 
       <div className={styles.telLabelWrapper}>
@@ -61,13 +64,26 @@ export default function SearchPage() {
       {orders.length > 0 && (
         <div className={styles.resultBox}>
           {orders.map((order) => (
-            <div key={order.paymentId} className={styles.resultItem}>
-              <div className={styles.resultAddress}>{order.deliveryAddress}</div>
-              {order.items.map((it, idx) => (
-                <div key={idx} className={styles.resultProduct}>
-                  상품번호: {it.productId} / 옵션: {it.optionText}
-                </div>
-              ))}
+            <div key={mode === 'order' ? order.paymentId : order.deliveryId} className={styles.resultItem}>
+              {mode === 'order' ? (
+                <>
+                  <div className={styles.resultAddress}>{order.deliveryAddress}</div>
+                  {order.items.map((it, idx) => (
+                    <div key={idx} className={styles.resultProduct}>
+                      상품번호: {it.productId} / 옵션: {it.optionText}
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <>
+                  <div className={styles.resultAddress}>주문번호: {order.transactionId}</div>
+                  {order.productListResponses.map((it, idx) => (
+                    <div key={idx} className={styles.resultProduct}>
+                      상품명: {it.productName} / 수량: {it.productQuantity}
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           ))}
         </div>
@@ -88,22 +104,37 @@ export default function SearchPage() {
           );
 
           try {
-            const res = await fetchOrderByPhone(cleanedPhone);
-            const data = res || [];
+            const res =
+              mode === 'order' ? await fetchOrderByPhone(cleanedPhone) : await fetchDeliveryByPhone(cleanedPhone);
+            const data = res?.data ?? [];
 
             setOrders(data);
 
             if (Array.isArray(data) && data.length > 0) {
               const target = mode === 'order' ? '/mobile/option' : '/mobile/delivery';
-              navigate(target, { state: { orders: data, fromOption: true } });
+              navigate(target, {
+                state: {
+                  orders: data,
+                  phoneNumber: cleanedPhone,
+                  fromOption: true,
+                  deliveryId: data?.[0]?.deliveryId,
+                },
+              });
+            } else {
+              setShowNotFound(true);
             }
           } catch (e) {
             console.error('조회 실패:', e);
+            const status = e?.response?.status;
+            if (status === 404) {
+              setShowNotFound(true);
+            }
           }
         }}
       >
         다음
       </button>
+      {showNotFound && <NotFoundModal onClose={() => setShowNotFound(false)} />}
     </div>
   );
 }

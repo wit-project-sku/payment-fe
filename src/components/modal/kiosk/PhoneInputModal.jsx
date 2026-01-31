@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Modal from '@commons/Modal';
+import Modal from '@commons/KioskModal';
 import styles from './PhoneInputModal.module.css';
 import { useUserStore } from '@hooks/useUserStore';
 import leftArrow from '@assets/images/leftArrow.png';

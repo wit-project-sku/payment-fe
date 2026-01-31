@@ -4,11 +4,12 @@ import KioskLayout from '@layouts/KioskLayout';
 import AdminLayout from '@layouts/AdminLayout';
 import MobileLayout from '@layouts/MobileLayout';
 
-const StorePage = lazy(() => import('@pages/store/StorePage'));
+const StorePage = lazy(() => import('@pages/kiosk/StorePage'));
 
 const ProductManagePage = lazy(() => import('@pages/admin/ProductManagePage'));
-const PaymentHistoryPage = lazy(() => import('@pages/admin/PaymentHistoryPage'));
-const IssueTrackerPage = lazy(() => import('@pages/admin/IssueTrackerPage'));
+const PaymentManagePage = lazy(() => import('@pages/admin/PaymentManagePage'));
+const DeliveryManagePage = lazy(() => import('@pages/admin/DeliveryManagePage'));
+const RefundManagePage = lazy(() => import('@pages/admin/RefundManagePage'));
 const LoginPage = lazy(() => import('@pages/admin/LoginPage'));
 
 const MobileMainPage = lazy(() => import('@pages/mobile/MobileMainPage'));
@@ -18,7 +19,8 @@ const AddressPage = lazy(() => import('@pages/mobile/AddressPage'));
 const DeliveryPage = lazy(() => import('@pages/mobile/DeliveryPage'));
 const RefundPage = lazy(() => import('@pages/mobile/RefundPage'));
 
-const NotFoundPage = lazy(() => import('@pages/NotFound/NotFound'));
+const NotFoundPage = lazy(() => import('@pages/notfound/NotFound'));
+const ImageNotFoundPage = lazy(() => import('@pages/notfound/ImageNotFound'));
 
 const PageLoader = () => (
   <div
@@ -42,14 +44,20 @@ function AddressGuard({ children }) {
 }
 
 function AdminGuard({ children }) {
-  const isAdmin = localStorage.getItem('admin-auth') === 'true';
-  return isAdmin ? children : <Navigate to='/admin/login' replace />;
+  const hasToken = !!localStorage.getItem('accessToken');
+  return hasToken ? children : <Navigate to='/admin/login' replace />;
+}
+
+function AdminLoginGuard({ children }) {
+  const hasToken = !!localStorage.getItem('accessToken');
+  return hasToken ? <Navigate to='/admin/products' replace /> : children;
 }
 
 export default function AppRouter() {
   const kioskRoutes = [
     { path: 'store', element: <StorePage /> },
-    { path: '*', element: <Navigate to='/mobile' replace /> },
+    { path: 'image', element: <ImageNotFoundPage /> },
+    { path: '*', element: <NotFoundPage /> },
   ];
 
   const adminRoutes = [
@@ -65,20 +73,42 @@ export default function AppRouter() {
       path: 'payments',
       element: (
         <AdminGuard>
-          <PaymentHistoryPage />
+          <PaymentManagePage />
         </AdminGuard>
       ),
     },
     {
-      path: 'issues',
+      path: 'deliveries',
       element: (
         <AdminGuard>
-          <IssueTrackerPage />
+          <DeliveryManagePage />
         </AdminGuard>
       ),
     },
-    { path: 'login', element: <LoginPage /> },
-    { path: '*', element: <Navigate to='/mobile' replace /> },
+    {
+      path: 'refunds',
+      element: (
+        <AdminGuard>
+          <RefundManagePage />
+        </AdminGuard>
+      ),
+    },
+    {
+      path: 'login',
+      element: (
+        <AdminLoginGuard>
+          <LoginPage />
+        </AdminLoginGuard>
+      ),
+    },
+    {
+      path: '*',
+      element: (
+        <AdminGuard>
+          <NotFoundPage />
+        </AdminGuard>
+      ),
+    },
   ];
 
   const mobileRoutes = [
@@ -131,7 +161,7 @@ export default function AppRouter() {
               <Route key={path} path={path} element={element} />
             ))}
           </Route>
-          <Route path='*' element={<Navigate to='/mobile' replace />} />
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </Router>

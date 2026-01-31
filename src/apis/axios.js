@@ -5,7 +5,7 @@ const PUBLIC_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const LOCAL_API_BASE_URL = import.meta.env.VITE_API_LOCAL_URL;
 const PRIVATE_API_BASE_URL = import.meta.env.VITE_APP_API_URL || PUBLIC_API_BASE_URL;
 const REQUEST_TIMEOUT = 30000;
-const REFRESH_ENDPOINT = '/auth/refresh';
+const REFRESH_ENDPOINT = '/auths/refresh';
 
 // Axios 인스턴스 생성 유틸
 const createApiInstance = (baseURL, options = {}) =>
@@ -33,7 +33,7 @@ const privateApi = createApiInstance(PRIVATE_API_BASE_URL);
  */
 privateApi.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessToken');
 
     if (token) {
       if (!config.headers) config.headers = {};
@@ -59,9 +59,9 @@ const onRefreshed = (newToken) => {
 };
 
 const forceLogout = () => {
-  localStorage.removeItem('token');
+  localStorage.removeItem('accessToken');
   localStorage.removeItem('refreshToken');
-  window.location.href = '/login';
+  window.location.href = '/admin/login';
 };
 
 /**
@@ -106,14 +106,23 @@ privateApi.interceptors.response.use(
     isRefreshing = true;
 
     try {
-      const res = await publicApi.post(REFRESH_ENDPOINT, { refreshToken });
-      const newToken = res?.data?.token;
+      const res = await publicApi.post(
+        REFRESH_ENDPOINT,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${refreshToken}`,
+          },
+        },
+      );
+      // 서버 응답: { success, code, message, data: "<newAccessToken>" }
+      const newToken = res?.data;
 
       if (!newToken) {
         throw new Error('리프레시 응답에 토큰이 없습니다.');
       }
 
-      localStorage.setItem('token', newToken);
+      localStorage.setItem('accessToken', newToken);
       isRefreshing = false;
       onRefreshed(newToken);
 

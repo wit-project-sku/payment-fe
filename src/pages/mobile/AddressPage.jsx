@@ -1,13 +1,18 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './AddressPage.module.css';
 import boxIcon from '@/assets/images/box.png';
-import leftArrow from '@assets/images/leftArrow.png';
+import left from '@assets/images/left.png';
 import profileImg from '@assets/images/profile.png';
 import locationImg from '@assets/images/location.png';
+import { saveDeliveryOptions } from '@api/deliveryApi';
 
 export default function AddressPage() {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const deliveryId = state?.deliveryId ?? state?.orders?.[0]?.deliveryId;
+  console.log('AddressPage state:', state);
+  console.log('deliveryId:', deliveryId);
 
   const [form, setForm] = useState({
     name: '',
@@ -62,15 +67,33 @@ export default function AddressPage() {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!allAgreed) return;
-    alert('주문이 완료되었습니다.');
-    navigate('/mobile');
+
+    if (!deliveryId) {
+      alert('배송 정보가 없습니다.');
+      return;
+    }
+
+    try {
+      await saveDeliveryOptions(deliveryId, {
+        productOptionRequests: [],
+        receiverName: form.name,
+        zipCode: form.zipcode,
+        address: form.address,
+        detailAddress: form.detail,
+      });
+
+      alert('주문이 완료되었습니다.');
+      navigate('/mobile');
+    } catch (error) {
+      alert('주문 처리 중 오류가 발생했습니다.', error);
+    }
   };
 
   return (
-    <div className={styles.pageContainer}>
-      <img src={leftArrow} alt='back' className={styles.backButton} onClick={() => navigate(-1)} />
+    <div className={styles.container}>
+      <img src={left} alt='back' className={styles.backButton} onClick={() => navigate(-1)} />
       <div className={styles.iconBox}>
         <img src={boxIcon} alt='box' />
       </div>
@@ -110,7 +133,7 @@ export default function AddressPage() {
 
       <div className={styles.fieldRow}>
         <img src={locationImg} alt='location' className={styles.icon} />
-        <div className={styles.fieldLabel}>주소</div>
+        <div className={styles.fieldLabel}>도로명 주소</div>
       </div>
       <input
         name='address'

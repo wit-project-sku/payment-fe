@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getProductDetail } from '@api/productApi';
 import styles from './ProductDetailModal.module.css';
-import WarningModal from '@modals/WarningModal';
+import WarningModal from '@modals/kiosk/WarningModal';
 import leftImg from '@assets/images/left.png';
 import rightImg from '@assets/images/right.png';
 
 export default function ProductDetailModal({ item, onClose, onAdd }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const [detail, setDetail] = useState(null);
-
   const [showWarning, setShowWarning] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!item?.id) return;
@@ -25,8 +25,8 @@ export default function ProductDetailModal({ item, onClose, onAdd }) {
     Array.isArray(detail?.images) && detail.images.length > 0
       ? detail.images.map((img) => img.imageUrl)
       : detail?.image
-      ? [detail.image]
-      : [];
+        ? [detail.image]
+        : [];
 
   return (
     <div className={styles.modalOverlay}>
@@ -108,6 +108,14 @@ export default function ProductDetailModal({ item, onClose, onAdd }) {
           <button
             className={styles.addBtn}
             onClick={() => {
+              const imageUrl = localStorage.getItem('image-url');
+              const hasValidImage = !!imageUrl && imageUrl !== 'null' && imageUrl.trim() !== '';
+
+              if (!hasValidImage) {
+                navigate('/kiosk/image', { replace: true });
+                return;
+              }
+
               setShowWarning(true);
             }}
           >

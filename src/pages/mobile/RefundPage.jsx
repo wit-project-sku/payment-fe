@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './RefundPage.module.css';
 import noticeImg from '@assets/images/notice.png';
-import leftArrow from '@assets/images/leftArrow.png';
+import leftImg from '@assets/images/left.png';
+import boxImg from '@assets/images/box.png';
 
 export default function RefundPage() {
   const navigate = useNavigate();
+  const fileInputRef = useRef(null);
 
   const [form, setForm] = useState({
     orderNo: '',
@@ -13,6 +15,10 @@ export default function RefundPage() {
     reason: '',
     detail: '',
   });
+
+  const [images, setImages] = useState([]);
+
+  const [showTermsModal, setShowTermsModal] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +32,15 @@ export default function RefundPage() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files).slice(0, 3);
+    setImages(files);
+  };
+
   const isValid = form.orderNo.trim() && form.phone.trim() && form.reason.trim() && form.detail.trim();
 
   const handleSubmit = (e) => {
@@ -36,11 +51,11 @@ export default function RefundPage() {
 
   return (
     <div className={styles.pageWrapper}>
-      <div className={styles.pageContainer}>
-        <img src={leftArrow} alt='back' className={styles.backButton} onClick={() => navigate(-1)} />
+      <div className={styles.container}>
+        <img src={leftImg} alt='back' className={styles.backButton} onClick={() => navigate(-1)} />
         <header className={styles.header}>
           <h1 className={styles.title}>환불 / 교환 신청</h1>
-          <p className={styles.subtitle}>불량품에 대한 교환 및 환불을 신청해주세요.</p>
+          <p className={styles.subtitle}>불량품에 대한 교환 및 환불을 신청해주세요</p>
         </header>
 
         <section className={styles.importantBox}>
@@ -49,15 +64,18 @@ export default function RefundPage() {
             중요
           </div>
           <p className={styles.importantText}>
-            본 제품은 개인 맞춤 제작 상품으로 <span className={styles.importantEmphasis}>단순 변심은 불가</span>합니다.
-            불량품 (제작 하자, 배송 파손 등)의 경우에만 교환 또는 환불이 가능합니다.
+            본 제품은 개인 맞춤 제작 상품으로{' '}
+            <span className={styles.importantEmphasis}>단순 변심에 의한 반품은 불가</span>합니다. 불량품 (제작 하자,
+            배송 파손 등)의 경우에만 교환 또는 환불이 가능합니다.
           </p>
         </section>
 
         <button
           type='button'
           className={styles.policyButton}
-          onClick={() => window.open('https://witglobal.com', '_blank')}
+          onClick={() => {
+            setShowTermsModal(true);
+          }}
         >
           교환 및 환불 정책 전문 보기
         </button>
@@ -71,7 +89,7 @@ export default function RefundPage() {
               name='orderNo'
               value={form.orderNo}
               onChange={handleChange}
-              placeholder='ORD-2025-001'
+              placeholder='260101000001'
               className={styles.input}
             />
           </div>
@@ -112,22 +130,45 @@ export default function RefundPage() {
               value={form.detail}
               onChange={handleChange}
               className={styles.textarea}
-              placeholder='불량 내용을 자세히 설명해주세요. (사진 첨부 권장)'
+              placeholder='불량 내용을 자세히 설명해주세요.'
             />
           </div>
 
           <div className={styles.fieldGroup}>
             <label className={styles.fieldLabel}>
-              불량 상태 사진 첨부 (2~3장 권장) <span className={styles.required}>*</span>
+              불량 상태 사진 첨부 (1~3장) <span className={styles.required}>*</span>
             </label>
-            <div className={styles.uploadBox}>
-              <div className={styles.uploadIcon}>📦</div>
-              <div className={styles.uploadText}>불량 부분 사진을 첨부해주세요</div>
-              <div className={styles.uploadSubText}>(최대 5장)</div>
+            <div className={styles.uploadBox} onClick={handleUploadClick}>
+              {images.length === 0 ? (
+                <>
+                  <img src={boxImg} alt='box' className={styles.uploadIcon} />
+                  <div className={styles.uploadText}>불량 부분 사진을 첨부해주세요</div>
+                  <div className={styles.uploadSubText}>(최대 3장)</div>
+                </>
+              ) : (
+                <div className={styles.uploadPreviewGrid}>
+                  {images.map((file, idx) => (
+                    <img
+                      key={idx}
+                      src={URL.createObjectURL(file)}
+                      alt={`preview-${idx}`}
+                      className={styles.previewImage}
+                    />
+                  ))}
+                </div>
+              )}
+              <input
+                type='file'
+                accept='image/*'
+                multiple
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                onClick={(e) => (e.target.value = null)}
+                style={{ display: 'none' }}
+              />
             </div>
           </div>
 
-          {/* 처리 절차 */}
           <section className={styles.infoBox}>
             <div className={styles.infoTitle}>처리 절차</div>
             <ul className={styles.infoList}>
@@ -138,7 +179,6 @@ export default function RefundPage() {
             </ul>
           </section>
 
-          {/* 유의사항 */}
           <section className={styles.infoBox}>
             <div className={styles.infoTitle}>유의사항</div>
             <ul className={styles.infoList}>
@@ -160,9 +200,92 @@ export default function RefundPage() {
           <p className={styles.footerQuestion}>문의사항이 있으신가요?</p>
           <p className={styles.footerLine}>고객센터: 010-8792-2028 (평일 09:00-18:00)</p>
           <p className={styles.footerLine}>이메일: unijun0109@gmail.com</p>
-          <p className={styles.footerLine}>카카오톡: @WIT상담</p>
         </footer>
       </div>
+      {showTermsModal && (
+        <div className={styles.termsOverlay}>
+          <div className={styles.termsModal}>
+            <div className={styles.termsBar}></div>
+            <h2 className={styles.termsTitle}>불량품 교환 및 환불 정책</h2>
+            <p className={styles.termsContent}>
+              <strong>1. 불량품 기준</strong>
+              <br />
+              • 제품 인쇄 불량 (흐림, 번짐, 이미지 누락 등)
+              <br />
+              • 제품 파손 또는 깨짐
+              <br />
+              • 주문 내용과 다른 제품 배송
+              <br />
+              • 기타 제품의 하자로 인한 사용 불가
+              <br />
+              <br />
+              <strong>2. 신고 방법</strong>
+              <br />
+              불량품 발견 시 아래의 방법으로 즉시 신고해 주시기 바랍니다.
+              <br />
+              <br />
+              • 고객센터: 02-1234-5678 (평일 09:00~18:00)
+              <br />
+              • 이메일: support@witglobal.com
+              <br />
+              • 카카오톡: @인사랑 (채널 추가 후 문의)
+              <br />
+              <br />
+              <strong>신고 시 필요 정보</strong>
+              <br />
+              • 주문번호
+              <br />
+              • 불량 상태를 확인할 수 있는 사진 2~3장
+              <br />
+              • 연락 가능한 전화번호
+              <br />
+              • 수령인 정보
+              <br />
+              <br />
+              <strong>3. 처리 절차</strong>
+              <br />
+              ① 불량품 신고 접수 (고객센터 또는 이메일)
+              <br />
+              ② 불량 확인 (영업일 기준 1~2일 소요)
+              <br />
+              ③ 교환 또는 환불 진행
+              <br />
+              ④ 교환 제품 재발송 또는 환불 처리
+              <br />
+              <br />
+              <strong>4. 교환 및 환불</strong>
+              <br />
+              • 교환: 동일 제품으로 교환 (배송비 무료)
+              <br />
+              • 환불: 결제 수단에 따라 3~7일 내 환불 처리
+              <br />
+              • 불량품 회수 시 택배 수거 진행 (고객 부담 없음)
+              <br />
+              <br />
+              <strong>5. 주의사항</strong>
+              <br />
+              본 제품은 개인화된 맞춤 제작 상품입니다.
+              <br />
+              제작 후에는 단순 변심에 의한 반품이 불가능합니다.
+              <br />
+              단, 불량품의 경우에는 교환 또는 환불이 가능합니다.
+              <br />
+              <br />
+              • 제품 수령 후 7일 이내에만 불량 신고 가능
+              <br />
+              • 고객 부주의로 인한 파손은 교환/환불 불가
+              <br />
+              • 단순 변심에 의한 반품 불가 (맞춤 제작 상품)
+              <br />
+              <br />
+              문의사항이 있으시면 언제든지 고객센터로 연락 주시기 바랍니다.
+            </p>
+            <button className={styles.termsClose} onClick={() => setShowTermsModal(false)}>
+              확인
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

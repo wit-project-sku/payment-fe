@@ -14,7 +14,7 @@
 
 .title {
   font-size: 30px;
-  font-weight: 700;
+  font-weight: 600;
   color: #5d4e37;
   margin-bottom: 6px;
 }
@@ -28,7 +28,7 @@
 .card {
   background: #ffffff;
   border-radius: 20px;
-  padding: 20px;
+  padding: 20px 15px;
   margin-bottom: 28px;
   border: 1.4px solid#e5e5e5;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
@@ -50,13 +50,13 @@
 
 .orderNumber {
   font-size: 16px;
-  color: #5e4a2f;
+  color: #5e5e5e;
   font-weight: 500;
 }
 
 .orderDate {
   margin-top: 4px;
-  color: #a89f95;
+  color: #a8a8a8;
   font-size: 14px;
 }
 
@@ -64,17 +64,32 @@
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
-.shipping {
-  background: #f2e9da;
-  color: #8c6d43;
+.ordered {
+  background: #f5ede1;
+  color: #5d4e37;
 }
 
-.complete {
-  background: #e1f4da;
-  color: #4c7d37;
+.ready {
+  background: #fefce8;
+  color: #ff9500;
+}
+
+.delivering {
+  background: #eef8ff;
+  color: #0088ff;
+}
+
+.completed {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.canceled {
+  background: #fef2f2;
+  color: #ff3737;
 }
 
 .itemRow {
@@ -82,11 +97,26 @@
   justify-content: space-between;
   margin: 8px 0;
   font-size: 16px;
-  color: #5e4a2f;
+  color: #1a1a1a;
 }
 
 .price {
   color: #5e4a2f;
+}
+
+.shippingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #a8a8a8;
+}
+
+.shippingPrice {
+  color: #a8a8a8;
+  font-weight: 400;
 }
 
 .totalRow {
@@ -96,8 +126,8 @@
   padding-top: 12px;
   border-top: 1px solid #eee3d4;
   font-size: 18px;
-  font-weight: 600;
-  color: #5e4a2f;
+  font-weight: 500;
+  color: #1a1a1a;
 }
 
 .totalPrice {
@@ -112,13 +142,13 @@
 }
 
 .trackingLabel {
-  color: #7c7163;
-  font-size: 14px;
+  color: #5e5e5e;
+  font-size: 12px;
   margin-bottom: 4px;
 }
 
 .trackingNumber {
-  font-size: 16px;
-  color: #5e4a2f;
-  font-weight: 600;
+  font-size: 14px;
+  color: #1a1a1a;
+  font-weight: 500;
 }

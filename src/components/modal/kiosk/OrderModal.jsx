@@ -1,5 +1,5 @@
 import styles from './OrderModal.module.css';
-import Modal from '@commons/Modal';
+import Modal from '@commons/KioskModal';
 
 export default function OrderModal({ items, onBack, onProceed }) {
   return (
