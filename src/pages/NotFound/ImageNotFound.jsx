@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../notfound/ImageNotFound.module.css';
+import styles from '../NotFound/ImageNotFound.module.css';
 
 export default function ImageNotFound() {
   const navigate = useNavigate();
