@@ -50,9 +50,6 @@
   position: absolute;
   top: 60px;
   right: 70px;
-  font-size: 70px;
-  font-weight: 400;
-  color: #6b6b6b;
   cursor: pointer;
   user-select: none;
 }
@@ -259,4 +256,11 @@
   font-size: 36px;
   font-weight: 500;
   color: #6b5b4a;
+}
+
+.soldOutBtn {
+  background-color: #ff3737;
+  color: #ffffff;
+  cursor: not-allowed;
+  opacity: 0.85;
 }
