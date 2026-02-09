@@ -14,8 +14,8 @@ export default function StorePage() {
   const [products, setProducts] = useState([]);
   const storedKioskId = localStorage.getItem('kiosk-id');
   const sanitizedStored = storedKioskId && storedKioskId !== 'null' ? storedKioskId.match(/\d+/)?.[0] : null;
-  const kioskId = sanitizedStored ? Number(sanitizedStored) : 1;
-  const effectiveKioskId = Number.isFinite(kioskId) && kioskId > 0 ? kioskId : 1;
+  const kioskId = sanitizedStored ? Number(sanitizedStored) : 3;
+  const effectiveKioskId = Number.isFinite(kioskId) && kioskId > 0 ? kioskId : 3;
 
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -102,16 +102,20 @@ export default function StorePage() {
 
   return (
     <div className={styles.grid}>
-      {products.map((item) => (
-        <GoodsItem
-          key={item.id}
-          name={item.name}
-          desc={item.subTitle}
-          price={item.price}
-          image={item.thumbnailImageUrl}
-          onClick={() => handleOpenDetail(item)}
-        />
-      ))}
+      {products.length === 0 ? (
+        <div className={styles.emptyMessage}>상품이 준비중입니다</div>
+      ) : (
+        products.map((item) => (
+          <GoodsItem
+            key={item.id}
+            name={item.name}
+            desc={item.subTitle}
+            price={item.price}
+            image={item.thumbnailImageUrl}
+            onClick={() => handleOpenDetail(item)}
+          />
+        ))
+      )}
       {detailModal}
     </div>
   );

@@ -5,6 +5,7 @@ import styles from './ProductDetailModal.module.css';
 import WarningModal from '@modals/kiosk/WarningModal';
 import leftImg from '@assets/images/left.png';
 import rightImg from '@assets/images/right.png';
+import closeImg from '@assets/images/close.png';
 
 export default function ProductDetailModal({ item, onClose, onAdd }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -37,7 +38,7 @@ export default function ProductDetailModal({ item, onClose, onAdd }) {
             {detail?.categoryName} &gt; {detail?.name}
           </div>
           <div className={styles.closeButton} onClick={onClose}>
-            ×
+            <img src={closeImg} alt='close' className={styles.closeIcon} />
           </div>
         </div>
 
@@ -106,8 +107,11 @@ export default function ProductDetailModal({ item, onClose, onAdd }) {
 
         <div className={styles.buttonRow}>
           <button
-            className={styles.addBtn}
+            className={`${styles.addBtn} ${detail?.status === 'SOLD_OUT' ? styles.soldOutBtn : ''}`}
+            disabled={detail?.status === 'SOLD_OUT'}
             onClick={() => {
+              if (detail?.status === 'SOLD_OUT') return;
+
               const imageUrl = localStorage.getItem('image-url');
               const hasValidImage = !!imageUrl && imageUrl !== 'null' && imageUrl.trim() !== '';
 
@@ -119,7 +123,7 @@ export default function ProductDetailModal({ item, onClose, onAdd }) {
               setShowWarning(true);
             }}
           >
-            담기
+            {detail?.status === 'SOLD_OUT' ? '품절' : '담기'}
           </button>
         </div>
         {showWarning && (

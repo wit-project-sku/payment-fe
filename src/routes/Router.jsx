@@ -1,16 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import KioskLayout from '@layouts/KioskLayout';
-import AdminLayout from '@layouts/AdminLayout';
 import MobileLayout from '@layouts/MobileLayout';
 
 const StorePage = lazy(() => import('@pages/kiosk/StorePage'));
-
-const ProductManagePage = lazy(() => import('@pages/admin/ProductManagePage'));
-const PaymentManagePage = lazy(() => import('@pages/admin/PaymentManagePage'));
-const DeliveryManagePage = lazy(() => import('@pages/admin/DeliveryManagePage'));
-const RefundManagePage = lazy(() => import('@pages/admin/RefundManagePage'));
-const LoginPage = lazy(() => import('@pages/admin/LoginPage'));
 
 const MobileMainPage = lazy(() => import('@pages/mobile/MobileMainPage'));
 const SearchPage = lazy(() => import('@pages/mobile/SearchPage'));
@@ -43,72 +36,11 @@ function AddressGuard({ children }) {
   return allowed ? children : <Navigate to='/mobile' replace />;
 }
 
-function AdminGuard({ children }) {
-  const hasToken = !!localStorage.getItem('accessToken');
-  return hasToken ? children : <Navigate to='/admin/login' replace />;
-}
-
-function AdminLoginGuard({ children }) {
-  const hasToken = !!localStorage.getItem('accessToken');
-  return hasToken ? <Navigate to='/admin/products' replace /> : children;
-}
-
 export default function AppRouter() {
   const kioskRoutes = [
     { path: 'store', element: <StorePage /> },
     { path: 'image', element: <ImageNotFoundPage /> },
     { path: '*', element: <NotFoundPage /> },
-  ];
-
-  const adminRoutes = [
-    {
-      path: 'products',
-      element: (
-        <AdminGuard>
-          <ProductManagePage />
-        </AdminGuard>
-      ),
-    },
-    {
-      path: 'payments',
-      element: (
-        <AdminGuard>
-          <PaymentManagePage />
-        </AdminGuard>
-      ),
-    },
-    {
-      path: 'deliveries',
-      element: (
-        <AdminGuard>
-          <DeliveryManagePage />
-        </AdminGuard>
-      ),
-    },
-    {
-      path: 'refunds',
-      element: (
-        <AdminGuard>
-          <RefundManagePage />
-        </AdminGuard>
-      ),
-    },
-    {
-      path: 'login',
-      element: (
-        <AdminLoginGuard>
-          <LoginPage />
-        </AdminLoginGuard>
-      ),
-    },
-    {
-      path: '*',
-      element: (
-        <AdminGuard>
-          <NotFoundPage />
-        </AdminGuard>
-      ),
-    },
   ];
 
   const mobileRoutes = [
@@ -142,16 +74,10 @@ export default function AppRouter() {
     <Router>
       <Suspense fallback={<PageLoader />}>
         <Routes>
-          <Route path='/' element={<Navigate to='/kiosk/store' replace />} />
+          <Route path='/' element={<Navigate to='/mobile' replace />} />
           <Route path='/kiosk/*' element={<KioskLayout />}>
             <Route index element={<Navigate to='/kiosk/store' replace />} />
             {kioskRoutes.map(({ path, element }) => (
-              <Route key={path} path={path} element={element} />
-            ))}
-          </Route>
-
-          <Route path='/admin/*' element={<AdminLayout />}>
-            {adminRoutes.map(({ path, element }) => (
               <Route key={path} path={path} element={element} />
             ))}
           </Route>

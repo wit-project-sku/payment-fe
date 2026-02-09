@@ -116,15 +116,3 @@ h6 {
   opacity: 1;
   transform: scale(1.15);
 }
-/* *,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-html,
-body,
-#root {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-} */

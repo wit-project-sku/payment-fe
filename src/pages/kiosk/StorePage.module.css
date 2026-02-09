@@ -8,3 +8,11 @@
   max-width: 1820px;
   margin: 0 auto;
 }
+
+.emptyMessage {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 700px 0;
+  color: #b2bbc6;
+  font-size: 100px;
+}

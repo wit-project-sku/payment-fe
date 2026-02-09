@@ -4,7 +4,7 @@ import styles from '../NotFound/ImageNotFound.module.css';
 
 export default function ImageNotFound() {
   const navigate = useNavigate();
-  const [seconds, setSeconds] = useState(30);
+  const [, setSeconds] = useState(30);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -24,7 +24,7 @@ export default function ImageNotFound() {
   return (
     <div className={styles.wrapper}>
       <p className={styles.message}>촬영한 이미지를 찾을 수 없습니다.</p>
-      <p className={styles.subMessage}>촬영 화면으로 이동합니다 ({seconds}초)</p>
+      <p className={styles.subMessage}>촬영 화면으로 이동합니다.</p>
     </div>
   );
 }
