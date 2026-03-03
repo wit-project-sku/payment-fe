@@ -4,7 +4,8 @@ import styles from './OptionPage.module.css';
 import left from '@assets/images/left.png';
 
 export default function OptionPage() {
-  const [selectedOption, setSelectedOption] = useState('');
+  // 폰케이스는 상품별로 기종 옵션을 선택해야 하므로, item.id 기준으로 옵션을 저장합니다.
+  const [selectedOptions, setSelectedOptions] = useState({});
   const navigate = useNavigate();
   const location = useLocation();
   const orders = location.state?.orders || [];
@@ -17,7 +18,7 @@ export default function OptionPage() {
         image: product.productImageUrl || '',
         category: product.category,
         options:
-          product.category === '핸드폰'
+          product.category === '폰케이스'
             ? [
                 'iPhone 17',
                 'iPhone 17 Air',
@@ -76,17 +77,21 @@ export default function OptionPage() {
     }),
   );
 
-  const requiresOption = items.some((item) => item.category === '핸드폰');
+  const requiresOption = items.some((item) => item.category === '폰케이스');
 
-  const isNextEnabled = requiresOption ? Boolean(selectedOption) : true;
+  const isNextEnabled = requiresOption
+    ? items.filter((item) => item.category === '폰케이스').every((item) => Boolean(selectedOptions[item.id]))
+    : true;
 
   const handleNext = () => {
     if (!isNextEnabled) return;
+
     navigate('/mobile/address', {
       state: {
         ...(location.state ?? {}),
         fromOption: true,
-        selectedOption,
+        // 폰케이스 기종 옵션(상품별)
+        selectedOptions,
       },
     });
   };
@@ -107,11 +112,16 @@ export default function OptionPage() {
             </div>
           </div>
 
-          {item.category === '핸드폰' && item.options?.length > 0 && (
+          {item.category === '폰케이스' && item.options?.length > 0 && (
             <select
               className={styles.select}
-              value={selectedOption}
-              onChange={(e) => setSelectedOption(e.target.value)}
+              value={selectedOptions[item.id] ?? ''}
+              onChange={(e) =>
+                setSelectedOptions((prev) => ({
+                  ...prev,
+                  [item.id]: e.target.value,
+                }))
+              }
             >
               <option value=''>기종을 선택하세요</option>
               {item.options.map((opt) => (
