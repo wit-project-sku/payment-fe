@@ -1,5 +1,5 @@
 import styles from './PaymentCompleteModal.module.css';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Modal from '@commons/KioskModal';
 import QRCode from 'react-qr-code';
 import { useUserStore } from '@hooks/useUserStore';
@@ -14,6 +14,39 @@ export default function PaymentCompleteModal({ onClose }) {
     onCloseRef.current = onClose;
   }, [onClose]);
 
+  const clearCartLikeStorage = useCallback(() => {
+    // 프로젝트마다 cart 저장 키가 다를 수 있어, 안전하게 여러 후보 키를 정리합니다.
+    // (키가 없으면 removeItem은 무해합니다.)
+    const keysToRemove = [
+      'cart',
+      'cartItems',
+      'kioskCart',
+      'orders',
+      'orderItems',
+      'paymentCart',
+      'persist:cart',
+      'persist:kioskCart',
+    ];
+
+    try {
+      keysToRemove.forEach((k) => window.localStorage?.removeItem?.(k));
+    } catch {
+      // storage 접근이 막힌 환경에서도 앱이 죽지 않도록 무시
+    }
+
+    // 전역 상태/스토어가 따로 있다면, 해당 영역에서 이 이벤트를 구독해 cart를 비우도록 확장할 수 있습니다.
+    try {
+      window.dispatchEvent(new CustomEvent('cart:clear'));
+    } catch {
+      // 구형 환경 대비
+    }
+  }, []);
+
+  const handleClose = useCallback(() => {
+    clearCartLikeStorage();
+    onCloseRef.current?.();
+  }, [clearCartLikeStorage]);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCountdown((prev) => {
@@ -27,12 +60,12 @@ export default function PaymentCompleteModal({ onClose }) {
 
   useEffect(() => {
     if (countdown === 0) {
-      onCloseRef.current?.();
+      handleClose();
     }
-  }, [countdown]);
+  }, [countdown, handleClose]);
 
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={handleClose}>
       <h2 className={styles.title}>결제 완료</h2>
       <p className={styles.subtitle}>문자 메시지가 발송되었습니다.</p>
 
@@ -50,7 +83,7 @@ export default function PaymentCompleteModal({ onClose }) {
 
       <p className={styles.autoClose}>{countdown}초 후 자동으로 닫힙니다</p>
 
-      <button className={styles.closeBtn} onClick={onClose}>
+      <button className={styles.closeBtn} onClick={handleClose}>
         확인
       </button>
     </Modal>
