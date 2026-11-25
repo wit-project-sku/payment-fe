@@ -95,7 +95,7 @@ export default function PaymentCompleteModal({ onClose, summary = null }) {
       </div>
 
       <div className={styles.qrContainer}>
-        <QRCode value='https://witteria.com/mobile' size={500} />
+        <QRCode value='https://witmarket.net/mobile' size={500} />
       </div>
 
       <div className={styles.linkBox}>
